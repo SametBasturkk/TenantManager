@@ -1,4 +1,4 @@
-package com.TenantManager.TenantManager.service;
+package com.TenantManager.TenantManager.configuration;
 
 import com.google.gson.Gson;
 import org.springframework.context.annotation.Bean;

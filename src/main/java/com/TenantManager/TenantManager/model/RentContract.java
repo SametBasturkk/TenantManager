@@ -1,4 +1,4 @@
-package com.TenantManager.TenantManager.models;
+package com.TenantManager.TenantManager.model;
 
 import java.util.Date;
 import java.util.UUID;

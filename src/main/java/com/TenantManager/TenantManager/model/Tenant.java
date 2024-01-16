@@ -1,4 +1,4 @@
-package com.TenantManager.TenantManager.models;
+package com.TenantManager.TenantManager.model;
 
 import java.util.List;
 import java.util.UUID;

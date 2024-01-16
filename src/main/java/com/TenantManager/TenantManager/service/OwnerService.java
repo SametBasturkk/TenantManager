@@ -1,6 +1,6 @@
 package com.TenantManager.TenantManager.service;
 
-import com.TenantManager.TenantManager.models.OwnerHouse;
+import com.TenantManager.TenantManager.model.OwnerHouse;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
