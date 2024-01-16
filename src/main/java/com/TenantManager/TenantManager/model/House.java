@@ -4,7 +4,7 @@ public class House {
 
   private Apartment apartment;
 
-  private OwnerHouse ownerHouse;
+  private Owner owner;
 
   private String houseAddress;
 
@@ -23,12 +23,12 @@ public class House {
     this.apartment = apartment;
   }
 
-  public OwnerHouse getOwnerHouse() {
-    return ownerHouse;
+  public Owner getOwnerHouse() {
+    return owner;
   }
 
-  public void setOwnerHouse(OwnerHouse ownerHouse) {
-    this.ownerHouse = ownerHouse;
+  public void setOwnerHouse(Owner owner) {
+    this.owner = owner;
   }
 
   public String getHouseAddress() {

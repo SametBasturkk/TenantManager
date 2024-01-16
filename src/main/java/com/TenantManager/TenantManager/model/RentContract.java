@@ -7,7 +7,7 @@ public class RentContract {
 
   private UUID rentContractID;
 
-  private OwnerHouse ownerHouse;
+  private Owner owner;
 
   private Tenant tenant;
 
@@ -28,12 +28,12 @@ public class RentContract {
     this.rentContractID = rentContractID;
   }
 
-  public OwnerHouse getOwnerHouse() {
-    return ownerHouse;
+  public Owner getOwnerHouse() {
+    return owner;
   }
 
-  public void setOwnerHouse(OwnerHouse ownerHouse) {
-    this.ownerHouse = ownerHouse;
+  public void setOwnerHouse(Owner owner) {
+    this.owner = owner;
   }
 
   public Tenant getTenant() {

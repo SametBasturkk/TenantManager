@@ -1,16 +1,11 @@
 package com.TenantManager.TenantManager.controller;
 
 import com.TenantManager.TenantManager.configuration.GsonFactory;
-import com.TenantManager.TenantManager.model.OwnerHouse;
+import com.TenantManager.TenantManager.dto.OwnerDTO;
+import com.TenantManager.TenantManager.model.Owner;
 import com.TenantManager.TenantManager.service.OwnerService;
-import com.google.gson.JsonObject;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Optional;
+import org.springframework.web.bind.annotation.*;
 
 
 @org.springframework.web.bind.annotation.RestController
@@ -26,29 +21,32 @@ public class RestController {
         this.gsonFactory = gsonFactory;
     }
 
-    @PostMapping(value = "/createOwner", consumes = "application/json", produces = "application/json")
-    public ResponseEntity createOwner(@RequestBody OwnerHouse ownerHouse) {
-        OwnerHouse newOwner = new OwnerHouse();
-        newOwner.setOwnerName(ownerHouse.getOwnerName());
-        newOwner.setOwnerSurname(ownerHouse.getOwnerSurname());
-        newOwner.setOwnerPhone(ownerHouse.getOwnerPhone());
-        newOwner.setOwnerMail(ownerHouse.getOwnerMail());
-        newOwner.setOwnerHouse(ownerHouse.getOwnerHouse());
+    @PostMapping("/create-owner")
+    public ResponseEntity createOwner(@RequestBody Owner owner) {
+        Owner newOwner = new Owner();
+        newOwner.setOwnerName(owner.getOwnerName());
+        newOwner.setOwnerSurname(owner.getOwnerSurname());
+        newOwner.setOwnerPhone(owner.getOwnerPhone());
+        newOwner.setOwnerMail(owner.getOwnerMail());
+        newOwner.setOwnerHouse(owner.getOwnerHouse());
+        newOwner.setOwnerTCKN(owner.getOwnerTCKN());
 
         ownerService.addOwner(newOwner);
 
         return ResponseEntity.ok(newOwner);
     }
 
-    @GetMapping(value = "/getOwner", consumes = "application/json", produces = "application/json")
-    public ResponseEntity getOwner(@RequestBody String name) {
-        JsonObject request = gsonFactory.gson().fromJson(name, JsonObject.class);
-        OwnerHouse owner = ownerService.getOwnerByName(request.get("ownerName").getAsString());
-        Optional<String> optionalValue = Optional.ofNullable(owner.getOwnerName());
-        if (optionalValue.isPresent()) {
-            return ResponseEntity.status(200).body(owner);
-        } else {
-            return ResponseEntity.status(404).body("Owner not found");
-        }
+    @GetMapping("/get-owner-by-name-surname")
+    public ResponseEntity getOwnerByNameAndSurname(@RequestParam String ownerName, String ownerSurname) {
+        OwnerDTO response =
+                gsonFactory.gson().fromJson(gsonFactory.gson().toJson(ownerService.getOwnerByNameAndSurname(ownerName,ownerSurname)), OwnerDTO.class);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/get-owner-by-tckn")
+    public ResponseEntity getOwnerByTCKN(@RequestParam String TCKN) {
+        OwnerDTO response =
+                gsonFactory.gson().fromJson(gsonFactory.gson().toJson(ownerService.getOwnerByTCKN(TCKN)), OwnerDTO.class);
+        return ResponseEntity.ok(response);
     }
 }

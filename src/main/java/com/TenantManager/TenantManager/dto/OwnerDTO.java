@@ -1,37 +1,18 @@
-package com.TenantManager.TenantManager.model;
+package com.TenantManager.TenantManager.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import java.util.List;
-import java.util.UUID;
-
-
-public class OwnerHouse {
-
-    @JsonIgnore
-    private UUID ownerID;
+public class OwnerDTO {
     private String ownerName;
     private String ownerSurname;
     private String ownerPhone;
     private String ownerMail;
     private String ownerHouse;
-    private List<RentContract> rentContracts;
 
-
-    public UUID getOwnerID() {
-        return ownerID;
-    }
-
-    public void setOwnerID() {
-        this.ownerID = UUID.randomUUID();
-    }
 
     public String getOwnerName() {
         return ownerName;
     }
 
     public void setOwnerName(String ownerName) {
-        setOwnerID();
         this.ownerName = ownerName;
     }
 
@@ -65,13 +46,5 @@ public class OwnerHouse {
 
     public void setOwnerHouse(String ownerHouse) {
         this.ownerHouse = ownerHouse;
-    }
-
-    public List<RentContract> getRentContracts() {
-        return rentContracts;
-    }
-
-    public void setRentContracts(List<RentContract> rentContracts) {
-        this.rentContracts = rentContracts;
     }
 }
