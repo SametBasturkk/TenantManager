@@ -20,7 +20,7 @@ public class DTOConverter {
         }
     }
 
-    public static com.TenantManager.TenantManager.model.Owner dtoToModel(OwnerDTO ownerDTO) {
+    public static Owner dtoToModel(OwnerDTO ownerDTO) {
         try {
             Owner owner = new Owner();
             owner.setOwnerName(ownerDTO.getOwnerName());
