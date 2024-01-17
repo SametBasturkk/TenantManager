@@ -1,14 +1,12 @@
 package com.TenantManager.TenantManager.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.List;
 import java.util.UUID;
 
 
 public class Owner {
 
-    @JsonIgnore
+
     private UUID ownerID;
     private String ownerName;
     private String ownerSurname;
