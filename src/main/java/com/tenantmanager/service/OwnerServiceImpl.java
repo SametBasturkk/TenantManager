@@ -1,6 +1,6 @@
-package com.TenantManager.TenantManager.service;
+package com.tenantmanager.service;
 
-import com.TenantManager.TenantManager.model.Owner;
+import com.tenantmanager.model.Owner;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

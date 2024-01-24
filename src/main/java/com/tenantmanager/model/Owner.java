@@ -1,28 +1,43 @@
-package com.TenantManager.TenantManager.model;
+package com.tenantmanager.model;
 
+
+import jakarta.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
-
+@Entity
+@Table(name = "owners")
 public class Owner {
 
-
-    private UUID ownerID;
+    @Id
+    @GeneratedValue
+    @Column(nullable = false, updatable = false)
+    private long id;
+    @Column(nullable = false)
+    private String ownerID;
+    @Column(nullable = false)
     private String ownerName;
+    @Column(nullable = false)
     private String ownerSurname;
+    @Column(nullable = false)
     private String ownerPhone;
+    @Column(nullable = false)
     private String ownerMail;
+    @Column(nullable = false)
     private String ownerHouse;
+    @OneToMany
+    @Column(nullable = false)
     private List<RentContract> rentContracts;
+    @Column(nullable = false)
     private String ownerTCKN;
 
 
-    public UUID getOwnerID() {
+    public String getOwnerID() {
         return ownerID;
     }
 
     public void setOwnerID() {
-        this.ownerID = UUID.randomUUID();
+        this.ownerID = UUID.randomUUID().toString();
     }
 
     public String getOwnerName() {

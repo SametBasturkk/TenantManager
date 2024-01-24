@@ -1,7 +1,7 @@
-package com.TenantManager.TenantManager.util;
+package com.tenantmanager.util;
 
-import com.TenantManager.TenantManager.dto.OwnerDTO;
-import com.TenantManager.TenantManager.model.Owner;
+import com.tenantmanager.dto.OwnerDTO;
+import com.tenantmanager.model.Owner;
 import org.springframework.stereotype.Service;
 
 @Service

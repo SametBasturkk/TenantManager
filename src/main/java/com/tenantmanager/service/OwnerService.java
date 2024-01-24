@@ -1,6 +1,6 @@
-package com.TenantManager.TenantManager.service;
+package com.tenantmanager.service;
 
-import com.TenantManager.TenantManager.model.Owner;
+import com.tenantmanager.model.Owner;
 
 public interface OwnerService {
     public void addOwner(Owner owner);

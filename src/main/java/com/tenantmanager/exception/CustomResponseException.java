@@ -1,4 +1,4 @@
-package com.TenantManager.TenantManager.exception;
+package com.tenantmanager.exception;
 
 public class CustomResponseException extends Exception {
     public CustomResponseException(String message) {

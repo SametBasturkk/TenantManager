@@ -1,9 +1,10 @@
-package com.TenantManager.TenantManager.controller;
+package com.tenantmanager.controller;
 
-import com.TenantManager.TenantManager.util.DTOConverter;
-import com.TenantManager.TenantManager.dto.OwnerDTO;
-import com.TenantManager.TenantManager.exception.CustomResponseException;
-import com.TenantManager.TenantManager.service.OwnerServiceImpl;
+import com.tenantmanager.util.DTOConverter;
+import com.tenantmanager.dto.OwnerDTO;
+import com.tenantmanager.exception.CustomResponseException;
+import com.tenantmanager.model.Owner;
+import com.tenantmanager.service.OwnerServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +23,8 @@ public class RestController {
     }
 
     @PostMapping("/create-owner")
-    public ResponseEntity createOwner(@RequestBody com.TenantManager.TenantManager.model.Owner owner) {
-        com.TenantManager.TenantManager.model.Owner newOwner = new com.TenantManager.TenantManager.model.Owner();
+    public ResponseEntity createOwner(@RequestBody Owner owner) {
+        Owner newOwner = new Owner();
         newOwner.setOwnerName(owner.getOwnerName());
         newOwner.setOwnerSurname(owner.getOwnerSurname());
         newOwner.setOwnerPhone(owner.getOwnerPhone());

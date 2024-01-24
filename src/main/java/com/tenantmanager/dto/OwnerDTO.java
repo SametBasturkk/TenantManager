@@ -1,4 +1,4 @@
-package com.TenantManager.TenantManager.dto;
+package com.tenantmanager.dto;
 
 public class OwnerDTO {
     private String ownerName;

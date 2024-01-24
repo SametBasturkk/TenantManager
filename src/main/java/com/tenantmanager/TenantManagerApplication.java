@@ -1,4 +1,4 @@
-package com.TenantManager.TenantManager;
+package com.tenantmanager;
 
 
 import org.springframework.boot.SpringApplication;
