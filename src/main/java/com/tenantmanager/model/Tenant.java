@@ -2,9 +2,7 @@ package com.tenantmanager.model;
 
 import jakarta.persistence.*;
 
-
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "tenants")
@@ -14,8 +12,6 @@ public class Tenant {
     @Column(nullable = false, updatable = false)
     private Long id;
     @Column(nullable = false)
-    private String tenantID;
-    @Column(nullable = false)
     private String tenantName;
     @Column(nullable = false)
     private String tenantSurname;
@@ -23,18 +19,20 @@ public class Tenant {
     private String tenantPhone;
     @Column(nullable = false)
     private String tenantMail;
-    @OneToMany(mappedBy = "tenant", cascade = CascadeType.ALL)
-    @Column(nullable = false)
+    @OneToMany
+    @JoinColumn
     private List<RentContract> rentContracts;
 
-
-    public String getTenantID() {
-        return tenantID;
+    public String getTenantTCKN() {
+        return tenantTCKN;
     }
 
-    public void setTenantID(UUID tenantID) {
-        this.tenantID = UUID.randomUUID().toString();
+    public void setTenantTCKN(String tenantTCKN) {
+        this.tenantTCKN = tenantTCKN;
     }
+
+    @Column(nullable = false, unique = true, name = "tenant_TCKN")
+    private String tenantTCKN;
 
     public String getTenantName() {
         return tenantName;

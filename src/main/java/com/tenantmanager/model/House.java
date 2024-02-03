@@ -2,6 +2,7 @@ package com.tenantmanager.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -13,8 +14,8 @@ public class House {
     private Long id;
     @Column(nullable = false)
     private String uuid;
-    //@ManyToMany
-    //private List<Owner> owners;
+    @ManyToMany
+    private List<Owner> owners;
     @Column(nullable = false)
     private String houseAddress;
     @Column(nullable = false)

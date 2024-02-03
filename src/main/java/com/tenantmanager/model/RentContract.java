@@ -2,7 +2,6 @@ package com.tenantmanager.model;
 
 import jakarta.persistence.*;
 
-
 import java.util.Date;
 import java.util.UUID;
 
@@ -13,20 +12,36 @@ public class RentContract {
     @GeneratedValue
     @Column(nullable = false, updatable = false)
     private long id;
+
     @Column
     private String uuid;
+
+    @ManyToOne
+    @JoinColumn(name = "estate_agent_id")
+    private EstateAgent rentContractEstateAgent;
+
     @Column(nullable = false)
     private Tenant tenant;
+
     @Column(nullable = false)
     private Date startDate;
+
     @Column(nullable = false)
     private Date endDate;
+
     @Column(nullable = false)
     private String rentContractPrice;
+
     @Column(nullable = false)
     private String rentContractDeposit;
 
+    public EstateAgent getRentContractEstateAgent() {
+        return rentContractEstateAgent;
+    }
 
+    public void setRentContractEstateAgent(EstateAgent rentContractEstateAgent) {
+        this.rentContractEstateAgent = rentContractEstateAgent;
+    }
 
     public Tenant getTenant() {
         return tenant;
@@ -73,7 +88,6 @@ public class RentContract {
     }
 
     public void setUuid(String uuid) {
-        this.uuid = UUID.randomUUID().toString();
+        this.uuid = (uuid != null) ? uuid : UUID.randomUUID().toString();
     }
-
 }

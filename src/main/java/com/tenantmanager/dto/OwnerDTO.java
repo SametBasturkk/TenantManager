@@ -6,6 +6,7 @@ public class OwnerDTO {
     private String ownerPhone;
     private String ownerMail;
     private String ownerHouse;
+    private String ownerTCKN;
 
 
     public String getOwnerName() {
@@ -46,5 +47,13 @@ public class OwnerDTO {
 
     public void setOwnerHouse(String ownerHouse) {
         this.ownerHouse = ownerHouse;
+    }
+
+    public String getOwnerTCKN() {
+        return ownerTCKN;
+    }
+
+    public void setOwnerTCKN(String ownerTCKN) {
+        this.ownerTCKN = ownerTCKN;
     }
 }

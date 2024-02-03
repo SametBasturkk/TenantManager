@@ -1,35 +1,12 @@
-package com.tenantmanager.model;
+package com.tenantmanager.dto;
 
-import jakarta.persistence.*;
-
-import java.util.List;
-
-@Entity
-@Table(name = "estate_agents")
-public class EstateAgent {
-    @Id
-    @GeneratedValue
-    @Column(nullable = false, updatable = false)
-    private Long id;
-
-    @Column(nullable = false)
+public class EstateAgentDTO {
     private String estateAgentName;
-
-    @Column(nullable = false)
     private String estateAgentSurname;
-
-    @Column(nullable = false)
     private String estateAgentPhone;
-
-    @Column(nullable = false)
     private String estateAgentMail;
-
-    @OneToMany
-    @JoinColumn(name = "estate_agent_id")
-    private List<RentContract> rentContracts;
-
-    @Column(nullable = false, unique = true, name = "estate_agent_TCKN")
     private String estateAgentTCKN;
+
 
     public String getEstateAgentName() {
         return estateAgentName;
@@ -61,14 +38,6 @@ public class EstateAgent {
 
     public void setEstateAgentMail(String estateAgentMail) {
         this.estateAgentMail = estateAgentMail;
-    }
-
-    public List<RentContract> getRentContracts() {
-        return rentContracts;
-    }
-
-    public void setRentContracts(List<RentContract> rentContracts) {
-        this.rentContracts = rentContracts;
     }
 
     public String getEstateAgentTCKN() {
