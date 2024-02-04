@@ -2,7 +2,6 @@ package com.tenantmanager.model;
 
 import jakarta.persistence.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -14,8 +13,8 @@ public class House {
     private Long id;
     @Column(nullable = false)
     private String uuid;
-    @ManyToMany
-    private List<Owner> owners;
+    @OneToOne
+    private Owner owner;
     @Column(nullable = false)
     private String houseAddress;
     @Column(nullable = false)
@@ -25,9 +24,24 @@ public class House {
     @Column(nullable = false)
     private String houseRooms;
     @ManyToOne
-    @JoinColumn(name = "apartmentId")
+    @JoinColumn(name = "apartment")
     private Apartment apartment;
 
+    public Apartment getApartment() {
+        return apartment;
+    }
+
+    public void setApartment(Apartment apartment) {
+        this.apartment = apartment;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 
     public String getHouseAddress() {
         return houseAddress;

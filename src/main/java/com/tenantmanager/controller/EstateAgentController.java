@@ -25,7 +25,7 @@ public class EstateAgentController {
         this.converter = converter;
     }
 
-    @PostMapping("/create-estateAgent")
+    @PostMapping("/create-estateagent")
     public ResponseEntity createEstateAgent(@RequestBody EstateAgent estateAgent) {
         EstateAgentDTO response = converter.estateAgentModelToDto(estateAgentService.createEstateAgent(estateAgent));
         try {
@@ -39,7 +39,7 @@ public class EstateAgentController {
         }
     }
 
-    @GetMapping("/get-estateAgent-by-name-surname")
+    @GetMapping("/get-estateagent-by-name-surname")
     public ResponseEntity getEstateAgentByNameAndSurname(@RequestParam String estateAgentName, String estateAgentSurname) {
         List<EstateAgent> estateAgentList = estateAgentService.getEstateAgentByNameAndSurname(estateAgentName, estateAgentSurname);
         List<EstateAgentDTO> responseList = new ArrayList<>();
@@ -57,7 +57,7 @@ public class EstateAgentController {
         }
     }
 
-    @GetMapping("/get-estateAgent-by-tckn")
+    @GetMapping("/get-estateagent-by-tckn")
     public ResponseEntity getEstateAgentByTCKN(@RequestParam String TCKN) {
         EstateAgentDTO response = converter.estateAgentModelToDto(estateAgentService.getEstateAgentByTCKN(TCKN));
         try {

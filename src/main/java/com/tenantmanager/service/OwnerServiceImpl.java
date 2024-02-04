@@ -39,6 +39,11 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
+    public Owner getOwnerById(String ownerId) {
+        return ownerRepository.findById(Long.parseLong(ownerId)).orElse(null);
+    }
+
+    @Override
     public List getOwnerByNameAndSurname(String ownerName, String ownerSurname) {
         List<Owner> ownerList = ownerRepository.findByOwnerNameAndOwnerSurname(ownerName, ownerSurname);
         if (ownerList.isEmpty()) {
