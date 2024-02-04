@@ -1,4 +1,4 @@
-package com.estateAgentmanager.repository;
+package com.tenantmanager.repository;
 
 import com.tenantmanager.model.EstateAgent;
 import org.springframework.data.jpa.repository.JpaRepository;

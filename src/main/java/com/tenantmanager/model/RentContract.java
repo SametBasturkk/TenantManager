@@ -20,7 +20,8 @@ public class RentContract {
     @JoinColumn(name = "estate_agent_id")
     private EstateAgent rentContractEstateAgent;
 
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "tenant_id")
     private Tenant tenant;
 
     @Column(nullable = false)

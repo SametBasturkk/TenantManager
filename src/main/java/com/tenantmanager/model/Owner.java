@@ -24,7 +24,6 @@ public class Owner {
     @Column(nullable = false)
     private String ownerHouse;
     @OneToMany
-    @Column(nullable = false)
     private List<RentContract> rentContracts;
     @Column(nullable = false, unique = true, name = "owner_tckn")
     private String ownerTCKN;

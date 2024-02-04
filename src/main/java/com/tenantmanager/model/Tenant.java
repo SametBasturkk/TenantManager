@@ -19,9 +19,10 @@ public class Tenant {
     private String tenantPhone;
     @Column(nullable = false)
     private String tenantMail;
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "tenant")
     private List<RentContract> rentContracts;
+    @Column(nullable = false, unique = true, name = "tenant_TCKN")
+    private String tenantTCKN;
 
     public String getTenantTCKN() {
         return tenantTCKN;
@@ -30,9 +31,6 @@ public class Tenant {
     public void setTenantTCKN(String tenantTCKN) {
         this.tenantTCKN = tenantTCKN;
     }
-
-    @Column(nullable = false, unique = true, name = "tenant_TCKN")
-    private String tenantTCKN;
 
     public String getTenantName() {
         return tenantName;

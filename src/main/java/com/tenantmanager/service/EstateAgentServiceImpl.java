@@ -1,6 +1,7 @@
 package com.tenantmanager.service;
 
 import com.tenantmanager.model.EstateAgent;
+import com.tenantmanager.repository.EstateAgentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,11 +9,11 @@ import java.util.List;
 @Service
 public class EstateAgentServiceImpl implements EstateAgentService {
 
-    private final com.estateAgentmanager.repository.EstateAgentRepository estateAgentRepository;
+    private final EstateAgentRepository estateAgentRepository;
 
     private final ValidatorServiceImpl validatorService;
 
-    public EstateAgentServiceImpl(com.estateAgentmanager.repository.EstateAgentRepository estateAgentRepository, ValidatorServiceImpl validatorService) {
+    public EstateAgentServiceImpl(EstateAgentRepository estateAgentRepository, ValidatorServiceImpl validatorService) {
         this.estateAgentRepository = estateAgentRepository;
         this.validatorService = validatorService;
     }

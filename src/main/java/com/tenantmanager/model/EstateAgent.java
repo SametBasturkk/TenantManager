@@ -24,9 +24,9 @@ public class EstateAgent {
     @Column(nullable = false)
     private String estateAgentMail;
 
-    @OneToMany
-    @JoinColumn(name = "estate_agent_id")
+    @OneToMany(mappedBy = "rentContractEstateAgent")
     private List<RentContract> rentContracts;
+
 
     @Column(nullable = false, unique = true, name = "estate_agent_TCKN")
     private String estateAgentTCKN;

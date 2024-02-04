@@ -20,7 +20,6 @@ public class Apartment {
     @Column(nullable = false)
     private String apartmentName;
     @OneToMany(mappedBy = "apartment", cascade = CascadeType.ALL)
-    @Column(nullable = false)
     private List<House> houses;
 
 
