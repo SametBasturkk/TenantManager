@@ -13,7 +13,7 @@ public class House {
     private Long id;
     @Column(nullable = false)
     private String uuid;
-    @OneToOne
+    @ManyToOne
     private Owner owner;
     @Column(nullable = false)
     private String houseAddress;

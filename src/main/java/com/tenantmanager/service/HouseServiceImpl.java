@@ -28,10 +28,11 @@ public class HouseServiceImpl implements HouseService {
         House house = new House();
         Owner owner = ownerService.getOwnerById(ownerId);
         Apartment apartment = apartmentService.getApartmentById(apartmentId);
+        
         if (owner == null || apartment == null) {
             throw new RuntimeException("Owner or Apartment not found");
         }
-        
+
         house.setOwner(owner);
         house.setHouseType(houseType);
         house.setHouseAddress(houseAddress);
