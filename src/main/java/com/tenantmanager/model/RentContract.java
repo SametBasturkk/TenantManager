@@ -35,6 +35,17 @@ public class RentContract {
 
     @Column(nullable = false)
     private String rentContractDeposit;
+    @OneToOne
+    private House house;
+
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
+    }
 
     public EstateAgent getRentContractEstateAgent() {
         return rentContractEstateAgent;
@@ -49,6 +60,7 @@ public class RentContract {
     }
 
     public void setTenant(Tenant tenant) {
+        setUuid(UUID.randomUUID().toString());
         this.tenant = tenant;
     }
 

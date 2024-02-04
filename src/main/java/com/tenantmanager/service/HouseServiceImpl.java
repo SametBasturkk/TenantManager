@@ -12,11 +12,11 @@ public class HouseServiceImpl implements HouseService {
 
     HouseRepository houseRepository;
 
-    AparmentService apartmentService;
+    ApartmentService apartmentService;
 
     OwnerService ownerService;
 
-    public HouseServiceImpl(HouseRepository houseRepository, AparmentService apartmentService, OwnerService ownerService) {
+    public HouseServiceImpl(HouseRepository houseRepository, ApartmentService apartmentService, OwnerService ownerService) {
         this.houseRepository = houseRepository;
         this.apartmentService = apartmentService;
         this.ownerService = ownerService;
@@ -28,7 +28,7 @@ public class HouseServiceImpl implements HouseService {
         House house = new House();
         Owner owner = ownerService.getOwnerById(ownerId);
         Apartment apartment = apartmentService.getApartmentById(apartmentId);
-        
+
         if (owner == null || apartment == null) {
             throw new RuntimeException("Owner or Apartment not found");
         }
@@ -40,5 +40,10 @@ public class HouseServiceImpl implements HouseService {
         house.setHouseRooms(houseRooms);
         house.setApartment(apartment);
         houseRepository.save(house);
+    }
+
+    @Override
+    public House getHouseById(String houseId) {
+        return houseRepository.findById(Long.parseLong(houseId)).orElse(null);
     }
 }

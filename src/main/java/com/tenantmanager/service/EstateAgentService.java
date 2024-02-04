@@ -12,4 +12,5 @@ public interface EstateAgentService {
 
     public EstateAgent createEstateAgent(EstateAgent estateAgent);
 
+    EstateAgent getEstateAgentById(String estateAgentId);
 }

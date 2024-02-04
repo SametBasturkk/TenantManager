@@ -52,5 +52,10 @@ public class TenantServiceImpl implements TenantService {
         return tenantRepository.findByTenantTCKN(TCKN);
     }
 
+    @Override
+    public Tenant getTenantById(String tenantId) {
+        return tenantRepository.findById(Long.parseLong(tenantId)).orElse(null);
+    }
+
 
 }

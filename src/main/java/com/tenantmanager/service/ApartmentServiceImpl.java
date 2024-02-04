@@ -5,7 +5,7 @@ import com.tenantmanager.repository.ApartmentRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ApartmentServiceImpl implements AparmentService {
+public class ApartmentServiceImpl implements ApartmentService {
 
     private final ApartmentRepository apartmentRepository;
 

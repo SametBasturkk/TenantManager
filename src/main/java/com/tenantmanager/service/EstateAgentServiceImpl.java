@@ -52,5 +52,10 @@ public class EstateAgentServiceImpl implements EstateAgentService {
         return estateAgentRepository.findByEstateAgentTCKN(TCKN);
     }
 
+    @Override
+    public EstateAgent getEstateAgentById(String estateAgentId) {
+        return estateAgentRepository.findById(Long.parseLong(estateAgentId)).orElse(null);
+    }
+
 
 }
