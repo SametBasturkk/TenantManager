@@ -31,10 +31,10 @@ public class RentContract {
     private Date endDate;
 
     @Column(nullable = false)
-    private String rentContractPrice;
+    private Integer rentContractPrice;
 
     @Column(nullable = false)
-    private String rentContractDeposit;
+    private Integer rentContractDeposit;
     @OneToOne
     private House house;
 
@@ -80,21 +80,6 @@ public class RentContract {
         this.endDate = endDate;
     }
 
-    public String getRentContractPrice() {
-        return rentContractPrice;
-    }
-
-    public void setRentContractPrice(String rentContractPrice) {
-        this.rentContractPrice = rentContractPrice;
-    }
-
-    public String getRentContractDeposit() {
-        return rentContractDeposit;
-    }
-
-    public void setRentContractDeposit(String rentContractDeposit) {
-        this.rentContractDeposit = rentContractDeposit;
-    }
 
     public String getUuid() {
         return uuid;
@@ -102,5 +87,21 @@ public class RentContract {
 
     public void setUuid(String uuid) {
         this.uuid = (uuid != null) ? uuid : UUID.randomUUID().toString();
+    }
+
+    public Integer getRentContractPrice() {
+        return rentContractPrice;
+    }
+
+    public void setRentContractPrice(Integer rentContractPrice) {
+        this.rentContractPrice = rentContractPrice;
+    }
+
+    public Integer getRentContractDeposit() {
+        return rentContractDeposit;
+    }
+
+    public void setRentContractDeposit(Integer rentContractDeposit) {
+        this.rentContractDeposit = rentContractDeposit;
     }
 }

@@ -7,7 +7,6 @@ public class TenantDTO {
     private String tenantMail;
     private String tenantTCKN;
 
-
     public String getTenantName() {
         return tenantName;
     }

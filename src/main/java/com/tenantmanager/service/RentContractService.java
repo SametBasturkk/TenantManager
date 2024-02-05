@@ -1,6 +1,8 @@
 package com.tenantmanager.service;
 
+import com.tenantmanager.dto.RentContractDTO;
+
 public interface RentContractService {
 
-public void createRentContract(String estateAgentId, String tenantId, String startdate, String enddate, String houseId, String apartmentId, String rentContractPrice, String rentContractDeposit);
+public void createRentContract(RentContractDTO rentContractDTO);
 }

@@ -39,8 +39,8 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public Owner getOwnerById(String ownerId) {
-        return ownerRepository.findById(Long.parseLong(ownerId)).orElse(null);
+    public Owner getOwnerById(Long ownerId) {
+        return ownerRepository.findById(ownerId).orElse(null);
     }
 
     @Override

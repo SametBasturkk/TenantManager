@@ -7,7 +7,6 @@ public class EstateAgentDTO {
     private String estateAgentMail;
     private String estateAgentTCKN;
 
-
     public String getEstateAgentName() {
         return estateAgentName;
     }

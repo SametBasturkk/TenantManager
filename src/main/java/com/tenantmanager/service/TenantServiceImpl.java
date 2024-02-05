@@ -53,8 +53,8 @@ public class TenantServiceImpl implements TenantService {
     }
 
     @Override
-    public Tenant getTenantById(String tenantId) {
-        return tenantRepository.findById(Long.parseLong(tenantId)).orElse(null);
+    public Tenant getTenantById(Long tenantId) {
+        return tenantRepository.findById(tenantId).orElse(null);
     }
 
 

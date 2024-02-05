@@ -1,5 +1,6 @@
 package com.tenantmanager.service;
 
+import com.tenantmanager.dto.HouseDTO;
 import com.tenantmanager.model.Apartment;
 import com.tenantmanager.model.House;
 import com.tenantmanager.model.Owner;
@@ -24,26 +25,26 @@ public class HouseServiceImpl implements HouseService {
 
 
     @Override
-    public void createHouse(String ownerId, String houseType, String houseAddress, String housePrice, String houseRooms, String apartmentId) {
-        House house = new House();
-        Owner owner = ownerService.getOwnerById(ownerId);
-        Apartment apartment = apartmentService.getApartmentById(apartmentId);
+    public void createHouse(HouseDTO house) {
+        House houseModel = new House();
+        Owner owner = ownerService.getOwnerById(house.getOwnerId());
+        Apartment apartment = apartmentService.getApartmentById(house.getApartmentId());
 
         if (owner == null || apartment == null) {
             throw new RuntimeException("Owner or Apartment not found");
         }
 
-        house.setOwner(owner);
-        house.setHouseType(houseType);
-        house.setHouseAddress(houseAddress);
-        house.setHousePrice(housePrice);
-        house.setHouseRooms(houseRooms);
-        house.setApartment(apartment);
-        houseRepository.save(house);
+        houseModel.setOwner(owner);
+        houseModel.setHouseType(house.getHouseType());
+        houseModel.setHouseAddress(house.getHouseAddress());
+        houseModel.setHousePrice(house.getHousePrice());
+        houseModel.setHouseRooms(house.getHouseRooms());
+        houseModel.setApartment(apartment);
+        houseRepository.save(houseModel);
     }
 
     @Override
-    public House getHouseById(String houseId) {
-        return houseRepository.findById(Long.parseLong(houseId)).orElse(null);
+    public House getHouseById(Long houseId) {
+        return houseRepository.findById(houseId).orElse(null);
     }
 }

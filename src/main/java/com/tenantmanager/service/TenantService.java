@@ -12,5 +12,5 @@ public interface TenantService {
 
     public Tenant createTenant(Tenant tenant);
 
-    Tenant getTenantById(String tenantId);
+    Tenant getTenantById(Long tenantId);
 }

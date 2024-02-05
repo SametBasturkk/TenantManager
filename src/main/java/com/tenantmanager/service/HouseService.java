@@ -1,10 +1,11 @@
 package com.tenantmanager.service;
 
+import com.tenantmanager.dto.HouseDTO;
 import com.tenantmanager.model.House;
 
 public interface HouseService {
 
-   public void createHouse(String ownerId,String houseType, String houseAddress, String housePrice, String houseRooms, String apartmentId);
+   public void createHouse(HouseDTO house);
 
-   House getHouseById(String houseId);
+   House getHouseById(Long houseId);
 }

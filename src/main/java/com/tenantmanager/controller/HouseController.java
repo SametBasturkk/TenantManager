@@ -1,9 +1,12 @@
 package com.tenantmanager.controller;
 
+import com.tenantmanager.dto.HouseDTO;
 import com.tenantmanager.service.HouseServiceImpl;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -19,10 +22,9 @@ public class HouseController {
     }
 
 
-    @PostMapping ("/create-house")
-    public void createHouse(@RequestParam String ownerId, String houseType, String houseAddress, String housePrice, String houseRooms, String apartmentId) {
-        houseService.createHouse(ownerId, houseType, houseAddress, housePrice, houseRooms, apartmentId);
+    @PostMapping("/create-house")
+    public ResponseEntity createHouse(@RequestBody HouseDTO house) {
+        houseService.createHouse(house);
+        return ResponseEntity.status(HttpStatus.CREATED).body("House created");
     }
-
-
 }

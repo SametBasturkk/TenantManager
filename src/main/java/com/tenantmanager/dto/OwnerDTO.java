@@ -8,7 +8,6 @@ public class OwnerDTO {
     private String ownerHouse;
     private String ownerTCKN;
 
-
     public String getOwnerName() {
         return ownerName;
     }

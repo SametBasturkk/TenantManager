@@ -1,10 +1,10 @@
 package com.tenantmanager.controller;
 
+import com.tenantmanager.dto.RentContractDTO;
 import com.tenantmanager.service.RentContractServiceImpl;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -18,7 +18,8 @@ public class RentContractController {
     }
 
     @PostMapping("/create-rent-contract")
-    public void createRentContract(@RequestParam String estateAgentId, @RequestParam String tenantId, @RequestParam String startdate, @RequestParam String enddate, @RequestParam String houseId, @RequestParam String apartmentId, @RequestParam String rentContractPrice, @RequestParam String rentContractDeposit) {
-        rentContractService.createRentContract(estateAgentId, tenantId, startdate, enddate, houseId, apartmentId, rentContractPrice, rentContractDeposit);
+    public ResponseEntity createRentContract(@RequestBody RentContractDTO rentContract) {
+        rentContractService.createRentContract(rentContract);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Rent contract created");
     }
 }

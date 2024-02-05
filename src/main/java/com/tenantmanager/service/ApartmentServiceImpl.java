@@ -23,7 +23,7 @@ public class ApartmentServiceImpl implements ApartmentService {
     }
 
     @Override
-    public Apartment getApartmentById(String apartmentId) {
-        return apartmentRepository.findById(Long.parseLong(apartmentId)).orElse(null);
+    public Apartment getApartmentById(Long apartmentId) {
+        return apartmentRepository.findById(apartmentId).orElse(null);
     }
 }

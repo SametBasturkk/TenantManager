@@ -20,9 +20,9 @@ public class House {
     @Column(nullable = false)
     private String houseType;
     @Column(nullable = false)
-    private String housePrice;
+    private Integer housePrice;
     @Column(nullable = false)
-    private String houseRooms;
+    private Integer houseRooms;
     @ManyToOne
     @JoinColumn(name = "apartment")
     private Apartment apartment;
@@ -60,21 +60,6 @@ public class House {
         this.houseType = houseType;
     }
 
-    public String getHousePrice() {
-        return housePrice;
-    }
-
-    public void setHousePrice(String housePrice) {
-        this.housePrice = housePrice;
-    }
-
-    public String getHouseRooms() {
-        return houseRooms;
-    }
-
-    public void setHouseRooms(String houseRooms) {
-        this.houseRooms = houseRooms;
-    }
 
     public String getUuid() {
         return uuid;
@@ -85,4 +70,19 @@ public class House {
     }
 
 
+    public Integer getHousePrice() {
+        return housePrice;
+    }
+
+    public void setHousePrice(Integer housePrice) {
+        this.housePrice = housePrice;
+    }
+
+    public Integer getHouseRooms() {
+        return houseRooms;
+    }
+
+    public void setHouseRooms(Integer houseRooms) {
+        this.houseRooms = houseRooms;
+    }
 }
