@@ -1,28 +1,23 @@
-package com.tenantmanager.model;
+package com.tenantmanager.dto;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
+import com.tenantmanager.model.House;
 
 import java.util.List;
-import java.util.UUID;
 
-@Entity
-@Table(name = "apartments")
-public class Apartment {
-    @Id
-    @GeneratedValue
-    @Column(nullable = false, updatable = false)
-    private Long id;
-    @Column(nullable = false)
+public class ApartmentDTO {
+
     private String uuid;
-    @Column(nullable = false)
     private String apartmentAddress;
-    @Column(nullable = false)
     private String apartmentName;
-    @OneToMany(mappedBy = "apartment", cascade = CascadeType.ALL)
-    @JsonManagedReference
     private List<House> houses;
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public String getApartmentAddress() {
         return apartmentAddress;
@@ -38,7 +33,6 @@ public class Apartment {
 
     public void setApartmentName(String apartmentName) {
         this.apartmentName = apartmentName;
-        setUuid();
     }
 
     public List<House> getHouses() {
@@ -48,13 +42,4 @@ public class Apartment {
     public void setHouses(List<House> houses) {
         this.houses = houses;
     }
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid() {
-        this.uuid = UUID.randomUUID().toString();
-    }
-
 }

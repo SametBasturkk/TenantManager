@@ -4,6 +4,9 @@ import com.tenantmanager.model.Apartment;
 import com.tenantmanager.repository.ApartmentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ApartmentServiceImpl implements ApartmentService {
 
@@ -25,5 +28,16 @@ public class ApartmentServiceImpl implements ApartmentService {
     @Override
     public Apartment getApartmentById(Long apartmentId) {
         return apartmentRepository.findById(apartmentId).orElse(null);
+    }
+
+    @Override
+    public List getApartments() {
+        List apartments = new ArrayList<>(apartmentRepository.findAll());
+        return apartments;
+    }
+
+    @Override
+    public void removeApartment(Long apartmentId) {
+        apartmentRepository.deleteById(apartmentId);
     }
 }

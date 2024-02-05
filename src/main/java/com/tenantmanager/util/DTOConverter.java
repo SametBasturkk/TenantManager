@@ -1,12 +1,17 @@
 package com.tenantmanager.util;
 
+import com.tenantmanager.dto.ApartmentDTO;
 import com.tenantmanager.dto.EstateAgentDTO;
 import com.tenantmanager.dto.OwnerDTO;
 import com.tenantmanager.dto.TenantDTO;
+import com.tenantmanager.model.Apartment;
 import com.tenantmanager.model.EstateAgent;
 import com.tenantmanager.model.Owner;
 import com.tenantmanager.model.Tenant;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class DTOConverter {
@@ -94,6 +99,30 @@ public class DTOConverter {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public static ApartmentDTO apartmentModelToDto(Apartment apartment) {
+        try {
+            ApartmentDTO apartmentDTO = new ApartmentDTO();
+            apartmentDTO.setApartmentName(apartment.getApartmentName());
+            apartmentDTO.setApartmentAddress(apartment.getApartmentAddress());
+            apartmentDTO.setHouses(apartment.getHouses());
+            apartmentDTO.setUuid(apartment.getUuid());
+            return apartmentDTO;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<ApartmentDTO> apartmentsModelToDto(List<Apartment> apartments) {
+        List<ApartmentDTO> apartmentDTOList = new ArrayList<>();
+
+        for (Apartment apartment : apartments) {
+            ApartmentDTO apartmentDTO = apartmentModelToDto(apartment);
+            apartmentDTOList.add(apartmentDTO);
+        }
+
+        return apartmentDTOList;
     }
 
 

@@ -1,5 +1,6 @@
 package com.tenantmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -24,6 +25,7 @@ public class House {
     @Column(nullable = false)
     private Integer houseRooms;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "apartment")
     private Apartment apartment;
 

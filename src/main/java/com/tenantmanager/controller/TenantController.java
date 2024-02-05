@@ -5,6 +5,7 @@ import com.tenantmanager.exception.CustomResponseException;
 import com.tenantmanager.model.Tenant;
 import com.tenantmanager.service.TenantServiceImpl;
 import com.tenantmanager.util.DTOConverter;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@RateLimiter(name = "simpleRateLimit", fallbackMethod = "fallback")
 public class TenantController {
 
     private final TenantServiceImpl tenantService;
@@ -69,5 +71,9 @@ public class TenantController {
         } catch (CustomResponseException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
+    }
+
+    public ResponseEntity fallback(Exception e) {
+        return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body("Too many requests");
     }
 }

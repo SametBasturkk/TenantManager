@@ -5,6 +5,7 @@ import com.tenantmanager.exception.CustomResponseException;
 import com.tenantmanager.model.Owner;
 import com.tenantmanager.service.OwnerServiceImpl;
 import com.tenantmanager.util.DTOConverter;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@org.springframework.web.bind.annotation.RestController
+@RestController
 @RequestMapping("/api")
+@RateLimiter(name = "simpleRateLimit", fallbackMethod = "fallback")
 public class OwnerController {
 
     private final OwnerServiceImpl ownerService;
@@ -24,6 +26,7 @@ public class OwnerController {
         this.ownerService = ownerService;
         this.converter = converter;
     }
+
 
     @PostMapping("/create-owner")
     public ResponseEntity createOwner(@RequestBody Owner owner) {
@@ -69,5 +72,9 @@ public class OwnerController {
         } catch (CustomResponseException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
+    }
+
+    public ResponseEntity fallback(Exception e) {
+        return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body("Too many requests");
     }
 }
