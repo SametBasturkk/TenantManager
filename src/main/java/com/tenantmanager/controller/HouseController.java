@@ -1,7 +1,7 @@
 package com.tenantmanager.controller;
 
 import com.tenantmanager.dto.HouseDTO;
-import com.tenantmanager.service.HouseServiceImpl;
+import com.tenantmanager.service.impl.HouseServiceImpl;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-@RateLimiter(name = "simpleRateLimit", fallbackMethod = "fallback")
+@RateLimiter(name = "simpleRateLimit")
 public class HouseController {
 
 

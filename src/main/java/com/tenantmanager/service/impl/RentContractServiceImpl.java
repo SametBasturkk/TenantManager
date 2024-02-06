@@ -1,9 +1,11 @@
-package com.tenantmanager.service;
+package com.tenantmanager.service.impl;
 
 import com.tenantmanager.dto.RentContractDTO;
 import com.tenantmanager.model.*;
 import com.tenantmanager.repository.RentContractRepository;
+import com.tenantmanager.service.api.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class RentContractServiceImpl implements RentContractService {
@@ -26,6 +28,7 @@ public class RentContractServiceImpl implements RentContractService {
 
 
     @Override
+    @Transactional
     public void createRentContract(RentContractDTO rentContractDTO) {
         RentContract rentContract = new RentContract();
         EstateAgent estateAgent = estateAgentService.getEstateAgentById(rentContractDTO.getEstateAgentId());

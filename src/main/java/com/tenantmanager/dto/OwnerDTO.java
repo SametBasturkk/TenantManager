@@ -1,11 +1,15 @@
 package com.tenantmanager.dto;
 
+import com.tenantmanager.model.House;
+
+import java.util.List;
+
 public class OwnerDTO {
     private String ownerName;
     private String ownerSurname;
     private String ownerPhone;
     private String ownerMail;
-    private String ownerHouse;
+    private List<House> ownerHouse;
     private String ownerTCKN;
 
     public String getOwnerName() {
@@ -40,13 +44,6 @@ public class OwnerDTO {
         this.ownerMail = ownerMail;
     }
 
-    public String getOwnerHouse() {
-        return ownerHouse;
-    }
-
-    public void setOwnerHouse(String ownerHouse) {
-        this.ownerHouse = ownerHouse;
-    }
 
     public String getOwnerTCKN() {
         return ownerTCKN;
@@ -54,5 +51,14 @@ public class OwnerDTO {
 
     public void setOwnerTCKN(String ownerTCKN) {
         this.ownerTCKN = ownerTCKN;
+    }
+
+
+    public List<House> getOwnerHouse() {
+        return ownerHouse;
+    }
+
+    public void setOwnerHouse(List<House> ownerHouse) {
+        this.ownerHouse = ownerHouse;
     }
 }

@@ -1,11 +1,15 @@
-package com.tenantmanager.service;
+package com.tenantmanager.service.impl;
 
 import com.tenantmanager.dto.HouseDTO;
 import com.tenantmanager.model.Apartment;
 import com.tenantmanager.model.House;
 import com.tenantmanager.model.Owner;
 import com.tenantmanager.repository.HouseRepository;
+import com.tenantmanager.service.api.ApartmentService;
+import com.tenantmanager.service.api.HouseService;
+import com.tenantmanager.service.api.OwnerService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class HouseServiceImpl implements HouseService {
@@ -25,6 +29,7 @@ public class HouseServiceImpl implements HouseService {
 
 
     @Override
+    @Transactional
     public void createHouse(HouseDTO house) {
         House houseModel = new House();
         Owner owner = ownerService.getOwnerById(house.getOwnerId());

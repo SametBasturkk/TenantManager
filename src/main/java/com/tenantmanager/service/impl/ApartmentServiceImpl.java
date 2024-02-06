@@ -1,8 +1,10 @@
-package com.tenantmanager.service;
+package com.tenantmanager.service.impl;
 
 import com.tenantmanager.model.Apartment;
 import com.tenantmanager.repository.ApartmentRepository;
+import com.tenantmanager.service.api.ApartmentService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ public class ApartmentServiceImpl implements ApartmentService {
     }
 
     @Override
+    @Transactional
     public void createApartment(String apartmentName, String apartmentAddress) {
         Apartment apartment = new Apartment();
         apartment.setApartmentName(apartmentName);
@@ -37,7 +40,8 @@ public class ApartmentServiceImpl implements ApartmentService {
     }
 
     @Override
-    public void removeApartment(Long apartmentId) {
+    @Transactional
+    public void deleteApartment(Long apartmentId) {
         apartmentRepository.deleteById(apartmentId);
     }
 }

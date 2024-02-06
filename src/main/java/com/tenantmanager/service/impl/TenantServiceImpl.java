@@ -1,8 +1,11 @@
-package com.tenantmanager.service;
+package com.tenantmanager.service.impl;
 
 import com.tenantmanager.model.Tenant;
 import com.tenantmanager.repository.TenantRepository;
+import com.tenantmanager.service.api.TenantService;
+import com.tenantmanager.util.Validator;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -11,15 +14,16 @@ public class TenantServiceImpl implements TenantService {
 
     private final TenantRepository tenantRepository;
 
-    private final ValidatorServiceImpl validatorService;
+    private final Validator validatorService;
 
-    public TenantServiceImpl(TenantRepository tenantRepository, ValidatorServiceImpl validatorService) {
+    public TenantServiceImpl(TenantRepository tenantRepository, Validator validatorService) {
         this.tenantRepository = tenantRepository;
         this.validatorService = validatorService;
     }
 
 
     @Override
+    @Transactional
     public Tenant createTenant(Tenant tenant) {
 
         if (!validatorService.validateTCKN(tenant.getTenantTCKN())) {

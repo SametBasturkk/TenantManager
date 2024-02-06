@@ -1,6 +1,5 @@
 package com.tenantmanager.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -19,8 +18,7 @@ public class Apartment {
     private String apartmentAddress;
     @Column(nullable = false)
     private String apartmentName;
-    @OneToMany(mappedBy = "apartment", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<House> houses;
 
 

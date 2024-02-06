@@ -3,15 +3,12 @@ package com.tenantmanager.controller;
 import com.tenantmanager.dto.OwnerDTO;
 import com.tenantmanager.exception.CustomResponseException;
 import com.tenantmanager.model.Owner;
-import com.tenantmanager.service.OwnerServiceImpl;
+import com.tenantmanager.service.impl.OwnerServiceImpl;
 import com.tenantmanager.util.DTOConverter;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @RestController
@@ -44,20 +41,7 @@ public class OwnerController {
 
     @GetMapping("/get-owner-by-name-surname")
     public ResponseEntity getOwnerByNameAndSurname(@RequestParam String ownerName, String ownerSurname) {
-        List<Owner> ownerList = ownerService.getOwnerByNameAndSurname(ownerName, ownerSurname);
-        List<OwnerDTO> responseList = new ArrayList<>();
-        for (Owner owner : ownerList) {
-            responseList.add(converter.ownerModelToDto(owner));
-        }
-        try {
-            if (responseList.isEmpty()) {
-                throw new CustomResponseException("Owner not found");
-            } else {
-                return ResponseEntity.status(HttpStatus.OK).body(responseList);
-            }
-        } catch (CustomResponseException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(converter.ownersModelToDto(ownerService.getOwnerByNameAndSurname(ownerName, ownerSurname)));
     }
 
     @GetMapping("/get-owner-by-tckn")

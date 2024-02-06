@@ -1,8 +1,12 @@
-package com.tenantmanager.service;
+package com.tenantmanager.service.impl;
 
 import com.tenantmanager.model.EstateAgent;
 import com.tenantmanager.repository.EstateAgentRepository;
+import com.tenantmanager.service.api.EstateAgentService;
+import com.tenantmanager.util.DTOConverter;
+import com.tenantmanager.util.Validator;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -11,15 +15,19 @@ public class EstateAgentServiceImpl implements EstateAgentService {
 
     private final EstateAgentRepository estateAgentRepository;
 
-    private final ValidatorServiceImpl validatorService;
+    private final Validator validatorService;
 
-    public EstateAgentServiceImpl(EstateAgentRepository estateAgentRepository, ValidatorServiceImpl validatorService) {
+    private final DTOConverter converter;
+
+    public EstateAgentServiceImpl(EstateAgentRepository estateAgentRepository, Validator validatorService, DTOConverter converter) {
         this.estateAgentRepository = estateAgentRepository;
         this.validatorService = validatorService;
+        this.converter = converter;
     }
 
 
     @Override
+    @Transactional
     public EstateAgent createEstateAgent(EstateAgent estateAgent) {
 
         if (!validatorService.validateTCKN(estateAgent.getEstateAgentTCKN())) {
@@ -40,11 +48,7 @@ public class EstateAgentServiceImpl implements EstateAgentService {
 
     @Override
     public List getEstateAgentByNameAndSurname(String estateAgentName, String estateAgentSurname) {
-        List<EstateAgent> estateAgentList = estateAgentRepository.findByEstateAgentNameAndEstateAgentSurname(estateAgentName, estateAgentSurname);
-        if (estateAgentList.isEmpty()) {
-            throw new IllegalArgumentException("EstateAgent not found");
-        }
-        return estateAgentList;
+        return estateAgentRepository.findByEstateAgentNameAndEstateAgentSurname(estateAgentName, estateAgentSurname);
     }
 
     @Override

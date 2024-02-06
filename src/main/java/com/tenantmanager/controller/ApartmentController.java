@@ -1,6 +1,6 @@
 package com.tenantmanager.controller;
 
-import com.tenantmanager.service.ApartmentServiceImpl;
+import com.tenantmanager.service.impl.ApartmentServiceImpl;
 import com.tenantmanager.util.DTOConverter;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.http.HttpStatus;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@RateLimiter(name = "simpleRateLimit", fallbackMethod = "fallback")
+@RateLimiter(name = "simpleRateLimit")
 public class ApartmentController {
 
     ApartmentServiceImpl apartmentService;
@@ -34,10 +34,10 @@ public class ApartmentController {
         return ResponseEntity.status(HttpStatus.OK).body(converter.apartmentsModelToDto(apartmentService.getApartments()));
     }
 
-    @PostMapping("/remove-apartment")
-    public ResponseEntity removeApartment(@RequestParam Long apartmentId) {
-        apartmentService.removeApartment(apartmentId);
-        return ResponseEntity.status(HttpStatus.OK).body("Apartment removed");
+    @PostMapping("/delete-apartment")
+    public ResponseEntity deleteApartment(@RequestParam Long apartmentId) {
+        apartmentService.deleteApartment(apartmentId);
+        return ResponseEntity.status(HttpStatus.OK).body("Apartment deleted");
     }
 
     public ResponseEntity fallback(Exception e) {

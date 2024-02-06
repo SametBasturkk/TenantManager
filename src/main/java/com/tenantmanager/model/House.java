@@ -1,6 +1,5 @@
 package com.tenantmanager.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -14,7 +13,8 @@ public class House {
     private Long id;
     @Column(nullable = false)
     private String uuid;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id")
     private Owner owner;
     @Column(nullable = false)
     private String houseAddress;
@@ -24,9 +24,8 @@ public class House {
     private Integer housePrice;
     @Column(nullable = false)
     private Integer houseRooms;
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "apartment")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "apartment_id")
     private Apartment apartment;
 
     public Apartment getApartment() {

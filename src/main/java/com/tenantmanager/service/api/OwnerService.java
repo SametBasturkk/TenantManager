@@ -1,4 +1,4 @@
-package com.tenantmanager.service;
+package com.tenantmanager.service.api;
 
 import com.tenantmanager.model.Owner;
 

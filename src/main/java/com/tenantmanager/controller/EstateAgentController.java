@@ -3,20 +3,17 @@ package com.tenantmanager.controller;
 import com.tenantmanager.dto.EstateAgentDTO;
 import com.tenantmanager.exception.CustomResponseException;
 import com.tenantmanager.model.EstateAgent;
-import com.tenantmanager.service.EstateAgentServiceImpl;
+import com.tenantmanager.service.impl.EstateAgentServiceImpl;
 import com.tenantmanager.util.DTOConverter;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 @RestController
 @RequestMapping("/api")
-@RateLimiter(name = "simpleRateLimit", fallbackMethod = "fallback")
+@RateLimiter(name = "simpleRateLimit")
 public class EstateAgentController {
 
     private final EstateAgentServiceImpl estateAgentService;
@@ -44,20 +41,7 @@ public class EstateAgentController {
 
     @GetMapping("/get-estateagent-by-name-surname")
     public ResponseEntity getEstateAgentByNameAndSurname(@RequestParam String estateAgentName, String estateAgentSurname) {
-        List<EstateAgent> estateAgentList = estateAgentService.getEstateAgentByNameAndSurname(estateAgentName, estateAgentSurname);
-        List<EstateAgentDTO> responseList = new ArrayList<>();
-        for (EstateAgent estateAgent : estateAgentList) {
-            responseList.add(converter.estateAgentModelToDto(estateAgent));
-        }
-        try {
-            if (responseList.isEmpty()) {
-                throw new CustomResponseException("EstateAgent not found");
-            } else {
-                return ResponseEntity.status(HttpStatus.OK).body(responseList);
-            }
-        } catch (CustomResponseException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(converter.estateAgentsModelToDto(estateAgentService.getEstateAgentByNameAndSurname(estateAgentName, estateAgentSurname)));
     }
 
     @GetMapping("/get-estateagent-by-tckn")

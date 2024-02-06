@@ -24,7 +24,8 @@ public class EstateAgent {
     @Column(nullable = false)
     private String estateAgentMail;
 
-    @OneToMany(mappedBy = "rentContractEstateAgent")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
     private List<RentContract> rentContracts;
 
 

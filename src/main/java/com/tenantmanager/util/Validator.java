@@ -1,9 +1,10 @@
-package com.tenantmanager.service;
+package com.tenantmanager.util;
 
-import org.springframework.stereotype.Service;
+import com.tenantmanager.service.api.ValidatorService;
+import org.springframework.stereotype.Component;
 
-@Service
-public class ValidatorServiceImpl implements ValidatorService {
+@Component
+public class Validator implements ValidatorService {
 
     @Override
     public boolean validateTCKN(String TCKN) {

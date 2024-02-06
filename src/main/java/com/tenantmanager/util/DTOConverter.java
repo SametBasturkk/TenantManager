@@ -22,7 +22,7 @@ public class DTOConverter {
             ownerDTO.setOwnerSurname(owner.getOwnerSurname());
             ownerDTO.setOwnerPhone(owner.getOwnerPhone());
             ownerDTO.setOwnerMail(owner.getOwnerMail());
-            ownerDTO.setOwnerHouse(owner.getOwnerHouse());
+            ownerDTO.setOwnerHouse(owner.getOwnerHouses());
             ownerDTO.setOwnerTCKN(owner.getOwnerTCKN());
             return ownerDTO;
         } catch (Exception e) {
@@ -37,7 +37,7 @@ public class DTOConverter {
             owner.setOwnerSurname(ownerDTO.getOwnerSurname());
             owner.setOwnerPhone(ownerDTO.getOwnerPhone());
             owner.setOwnerMail(ownerDTO.getOwnerMail());
-            owner.setOwnerHouse(ownerDTO.getOwnerHouse());
+            owner.setOwnerHouses(ownerDTO.getOwnerHouse());
             owner.setOwnerTCKN(ownerDTO.getOwnerTCKN());
             return owner;
         } catch (Exception e) {
@@ -88,6 +88,7 @@ public class DTOConverter {
     }
 
     public static EstateAgentDTO estateAgentModelToDto(EstateAgent estateAgent) {
+
         try {
             EstateAgentDTO estateAgentDTO = new EstateAgentDTO();
             estateAgentDTO.setEstateAgentName(estateAgent.getEstateAgentName());
@@ -125,5 +126,34 @@ public class DTOConverter {
         return apartmentDTOList;
     }
 
+    public static List<EstateAgentDTO> estateAgentsModelToDto(List<EstateAgent> estateAgents) {
+        List<EstateAgentDTO> estateAgentDTOList = new ArrayList<>();
+
+        for (EstateAgent estateAgent : estateAgents) {
+            EstateAgentDTO estateAgentDTO = estateAgentModelToDto(estateAgent);
+            estateAgentDTOList.add(estateAgentDTO);
+        }
+        return estateAgentDTOList;
+    }
+
+    public static List<OwnerDTO> ownersModelToDto(List<Owner> owners) {
+        List<OwnerDTO> ownersDTOList = new ArrayList<>();
+
+        for (Owner owner : owners) {
+            OwnerDTO ownerDTO = ownerModelToDto(owner);
+            ownersDTOList.add(ownerDTO);
+        }
+        return ownersDTOList;
+    }
+
+    public static List<TenantDTO> tenantsModelToDto(List<Tenant> tenants) {
+        List<TenantDTO> tenantsDtoList = new ArrayList<>();
+
+        for (Tenant tenant : tenants) {
+            TenantDTO tenantDTO = tenantModelToDto(tenant);
+            tenantsDtoList.add(tenantDTO);
+        }
+        return tenantsDtoList;
+    }
 
 }

@@ -3,20 +3,17 @@ package com.tenantmanager.controller;
 import com.tenantmanager.dto.TenantDTO;
 import com.tenantmanager.exception.CustomResponseException;
 import com.tenantmanager.model.Tenant;
-import com.tenantmanager.service.TenantServiceImpl;
+import com.tenantmanager.service.impl.TenantServiceImpl;
 import com.tenantmanager.util.DTOConverter;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 @RestController
 @RequestMapping("/api")
-@RateLimiter(name = "simpleRateLimit", fallbackMethod = "fallback")
+@RateLimiter(name = "simpleRateLimit")
 public class TenantController {
 
     private final TenantServiceImpl tenantService;
@@ -43,20 +40,8 @@ public class TenantController {
 
     @GetMapping("/get-tenant-by-name-surname")
     public ResponseEntity getTenantByNameAndSurname(@RequestParam String tenantName, String tenantSurname) {
-        List<Tenant> tenantList = tenantService.getTenantByNameAndSurname(tenantName, tenantSurname);
-        List<TenantDTO> responseList = new ArrayList<>();
-        for (Tenant tenant : tenantList) {
-            responseList.add(converter.tenantModelToDto(tenant));
-        }
-        try {
-            if (responseList.isEmpty()) {
-                throw new CustomResponseException("Tenant not found");
-            } else {
-                return ResponseEntity.status(HttpStatus.OK).body(responseList);
-            }
-        } catch (CustomResponseException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(converter.tenantsModelToDto(tenantService.getTenantByNameAndSurname(tenantName, tenantSurname)));
+
     }
 
     @GetMapping("/get-tenant-by-tckn")

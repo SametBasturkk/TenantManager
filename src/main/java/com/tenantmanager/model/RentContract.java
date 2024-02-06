@@ -16,11 +16,11 @@ public class RentContract {
     @Column
     private String uuid;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "estate_agent_id")
     private EstateAgent rentContractEstateAgent;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "tenant_id")
     private Tenant tenant;
 
@@ -35,7 +35,8 @@ public class RentContract {
 
     @Column(nullable = false)
     private Integer rentContractDeposit;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "house_id")
     private House house;
 
 

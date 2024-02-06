@@ -21,9 +21,10 @@ public class Owner {
     private String ownerPhone;
     @Column(nullable = false)
     private String ownerMail;
-    @Column(nullable = false)
-    private String ownerHouse;
-    @OneToMany
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<House> ownerHouses;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
     private List<RentContract> rentContracts;
     @Column(nullable = false, unique = true, name = "owner_tckn")
     private String ownerTCKN;
@@ -62,13 +63,6 @@ public class Owner {
         this.ownerMail = ownerMail;
     }
 
-    public String getOwnerHouse() {
-        return ownerHouse;
-    }
-
-    public void setOwnerHouse(String ownerHouse) {
-        this.ownerHouse = ownerHouse;
-    }
 
     public List<RentContract> getRentContracts() {
         return rentContracts;
@@ -84,5 +78,14 @@ public class Owner {
 
     public void setOwnerTCKN(String ownerTCKN) {
         this.ownerTCKN = ownerTCKN;
+    }
+
+
+    public List<House> getOwnerHouses() {
+        return ownerHouses;
+    }
+
+    public void setOwnerHouses(List<House> ownerHouses) {
+        this.ownerHouses = ownerHouses;
     }
 }

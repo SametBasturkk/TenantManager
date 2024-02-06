@@ -19,7 +19,8 @@ public class Tenant {
     private String tenantPhone;
     @Column(nullable = false)
     private String tenantMail;
-    @OneToMany(mappedBy = "tenant")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
     private List<RentContract> rentContracts;
     @Column(nullable = false, unique = true, name = "tenant_TCKN")
     private String tenantTCKN;

@@ -1,4 +1,4 @@
-package com.tenantmanager.service;
+package com.tenantmanager.service.api;
 
 public interface ValidatorService {
 

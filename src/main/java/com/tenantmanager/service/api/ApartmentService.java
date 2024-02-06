@@ -1,4 +1,4 @@
-package com.tenantmanager.service;
+package com.tenantmanager.service.api;
 
 import com.tenantmanager.model.Apartment;
 
@@ -12,5 +12,5 @@ public interface ApartmentService {
 
     public List<Apartment> getApartments();
 
-    public void removeApartment(Long apartmentId);
+    public void deleteApartment(Long apartmentId);
 }
