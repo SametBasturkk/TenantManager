@@ -1,5 +1,6 @@
 package com.tenantmanager.service.impl;
 
+import com.tenantmanager.exception.DbException;
 import com.tenantmanager.model.Tenant;
 import com.tenantmanager.repository.TenantRepository;
 import com.tenantmanager.service.api.TenantService;
@@ -45,7 +46,7 @@ public class TenantServiceImpl implements TenantService {
 
     @Override
     public Tenant getTenantById(Long tenantId) {
-        return tenantRepository.findById(tenantId).orElse(null);
+        return tenantRepository.findById(tenantId).orElseThrow(() -> new DbException("Tenant not found"));
     }
 
 

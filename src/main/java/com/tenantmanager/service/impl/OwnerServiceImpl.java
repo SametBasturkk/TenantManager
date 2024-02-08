@@ -1,5 +1,6 @@
 package com.tenantmanager.service.impl;
 
+import com.tenantmanager.exception.DbException;
 import com.tenantmanager.model.Owner;
 import com.tenantmanager.repository.OwnerRepository;
 import com.tenantmanager.service.api.OwnerService;
@@ -31,7 +32,7 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public Owner getOwnerById(Long ownerId) {
-        return ownerRepository.findById(ownerId).orElse(null);
+        return ownerRepository.findById(ownerId).orElseThrow(() -> new DbException("Owner not found"));
     }
 
     @Override

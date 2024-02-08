@@ -1,7 +1,7 @@
 package com.tenantmanager.controller;
 
 import com.tenantmanager.dto.TenantDTO;
-import com.tenantmanager.exception.CustomResponseException;
+import com.tenantmanager.exception.DtoModelConvertException;
 import com.tenantmanager.model.Tenant;
 import com.tenantmanager.service.impl.TenantServiceImpl;
 import com.tenantmanager.util.DTOConverter;
@@ -30,11 +30,11 @@ public class TenantController {
         TenantDTO response = converter.tenantModelToDto(tenantService.createTenant(tenant));
         try {
             if (response == null) {
-                throw new CustomResponseException("Tenant not created");
+                throw new DtoModelConvertException("Tenant not created");
             } else {
                 return ResponseEntity.status(HttpStatus.CREATED).body(response);
             }
-        } catch (CustomResponseException e) {
+        } catch (DtoModelConvertException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
@@ -50,11 +50,11 @@ public class TenantController {
         TenantDTO response = converter.tenantModelToDto(tenantService.getTenantByTCKN(TCKN));
         try {
             if (response == null) {
-                throw new CustomResponseException("Tenant not found");
+                throw new DtoModelConvertException("Tenant not found");
             } else {
                 return ResponseEntity.status(HttpStatus.OK).body(response);
             }
-        } catch (CustomResponseException e) {
+        } catch (DtoModelConvertException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }

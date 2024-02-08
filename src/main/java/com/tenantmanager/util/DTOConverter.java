@@ -4,6 +4,7 @@ import com.tenantmanager.dto.ApartmentDTO;
 import com.tenantmanager.dto.EstateAgentDTO;
 import com.tenantmanager.dto.OwnerDTO;
 import com.tenantmanager.dto.TenantDTO;
+import com.tenantmanager.exception.DtoModelConvertException;
 import com.tenantmanager.model.Apartment;
 import com.tenantmanager.model.EstateAgent;
 import com.tenantmanager.model.Owner;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Service
 public class DTOConverter {
-    public static OwnerDTO ownerModelToDto(Owner owner) {
+    public static OwnerDTO ownerModelToDto(Owner owner) throws DtoModelConvertException {
         try {
             OwnerDTO ownerDTO = new OwnerDTO();
             ownerDTO.setOwnerName(owner.getOwnerName());
@@ -25,12 +26,13 @@ public class DTOConverter {
             ownerDTO.setOwnerHouse(owner.getOwnerHouses());
             ownerDTO.setOwnerTCKN(owner.getOwnerTCKN());
             return ownerDTO;
-        } catch (Exception e) {
-            return null;
+        } catch (DtoModelConvertException e) {
+            throw new DtoModelConvertException("Error converting Owner to DTO", e);
         }
     }
 
-    public static Owner ownerDtoToModel(OwnerDTO ownerDTO) {
+
+    public static Owner ownerDtoToModel(OwnerDTO ownerDTO) throws DtoModelConvertException {
         try {
             Owner owner = new Owner();
             owner.setOwnerName(ownerDTO.getOwnerName());
@@ -41,11 +43,11 @@ public class DTOConverter {
             owner.setOwnerTCKN(ownerDTO.getOwnerTCKN());
             return owner;
         } catch (Exception e) {
-            return null;
+            throw new DtoModelConvertException("Error converting OwnerDTO to Model", e);
         }
     }
 
-    public static Tenant tenantDtoToModel(TenantDTO tenantDTO) {
+    public static Tenant tenantDtoToModel(TenantDTO tenantDTO) throws DtoModelConvertException {
         try {
             Tenant tenant = new Tenant();
             tenant.setTenantName(tenantDTO.getTenantName());
@@ -55,11 +57,11 @@ public class DTOConverter {
             tenant.setTenantTCKN(tenantDTO.getTenantTCKN());
             return tenant;
         } catch (Exception e) {
-            return null;
+            throw new DtoModelConvertException("Error converting TenantDTO to Model", e);
         }
     }
 
-    public static TenantDTO tenantModelToDto(Tenant tenant) {
+    public static TenantDTO tenantModelToDto(Tenant tenant) throws DtoModelConvertException {
         try {
             TenantDTO tenantDTO = new TenantDTO();
             tenantDTO.setTenantName(tenant.getTenantName());
@@ -69,11 +71,11 @@ public class DTOConverter {
             tenantDTO.setTenantTCKN(tenant.getTenantTCKN());
             return tenantDTO;
         } catch (Exception e) {
-            return null;
+            throw new DtoModelConvertException("Error converting Tenant to DTO", e);
         }
     }
 
-    public static EstateAgent estateAgentDtoToModel(EstateAgentDTO estateAgentDTO) {
+    public static EstateAgent estateAgentDtoToModel(EstateAgentDTO estateAgentDTO) throws DtoModelConvertException {
         try {
             EstateAgent estateAgent = new EstateAgent();
             estateAgent.setEstateAgentName(estateAgentDTO.getEstateAgentName());
@@ -83,11 +85,11 @@ public class DTOConverter {
             estateAgent.setEstateAgentTCKN(estateAgentDTO.getEstateAgentTCKN());
             return estateAgent;
         } catch (Exception e) {
-            return null;
+            throw new DtoModelConvertException("Error converting EstateAgentDTO to Model", e);
         }
     }
 
-    public static EstateAgentDTO estateAgentModelToDto(EstateAgent estateAgent) {
+    public static EstateAgentDTO estateAgentModelToDto(EstateAgent estateAgent) throws DtoModelConvertException {
 
         try {
             EstateAgentDTO estateAgentDTO = new EstateAgentDTO();
@@ -98,11 +100,11 @@ public class DTOConverter {
             estateAgentDTO.setEstateAgentTCKN(estateAgent.getEstateAgentTCKN());
             return estateAgentDTO;
         } catch (Exception e) {
-            return null;
+            throw new DtoModelConvertException("Error converting EstateAgent to DTO", e);
         }
     }
 
-    public static ApartmentDTO apartmentModelToDto(Apartment apartment) {
+    public static ApartmentDTO apartmentModelToDto(Apartment apartment) throws DtoModelConvertException {
         try {
             ApartmentDTO apartmentDTO = new ApartmentDTO();
             apartmentDTO.setApartmentName(apartment.getApartmentName());
@@ -111,49 +113,68 @@ public class DTOConverter {
             apartmentDTO.setUuid(apartment.getUuid());
             return apartmentDTO;
         } catch (Exception e) {
-            return null;
+            throw new DtoModelConvertException("Error converting Apartment to DTO", e);
         }
     }
 
-    public List<ApartmentDTO> apartmentsModelToDto(List<Apartment> apartments) {
-        List<ApartmentDTO> apartmentDTOList = new ArrayList<>();
+    public List<ApartmentDTO> apartmentsModelToDto(List<Apartment> apartments) throws DtoModelConvertException {
+        try {
+            List<ApartmentDTO> apartmentDTOList = new ArrayList<>();
 
-        for (Apartment apartment : apartments) {
-            ApartmentDTO apartmentDTO = apartmentModelToDto(apartment);
-            apartmentDTOList.add(apartmentDTO);
+            for (Apartment apartment : apartments) {
+                ApartmentDTO apartmentDTO = apartmentModelToDto(apartment);
+                apartmentDTOList.add(apartmentDTO);
+            }
+
+            return apartmentDTOList;
+        } catch (Exception e) {
+            throw new DtoModelConvertException("Error converting Apartment to DTO", e);
         }
-
-        return apartmentDTOList;
     }
 
-    public static List<EstateAgentDTO> estateAgentsModelToDto(List<EstateAgent> estateAgents) {
-        List<EstateAgentDTO> estateAgentDTOList = new ArrayList<>();
+    public static List<EstateAgentDTO> estateAgentsModelToDto(List<EstateAgent> estateAgents) throws DtoModelConvertException {
+        try {
+            List<EstateAgentDTO> estateAgentDTOList = new ArrayList<>();
 
-        for (EstateAgent estateAgent : estateAgents) {
-            EstateAgentDTO estateAgentDTO = estateAgentModelToDto(estateAgent);
-            estateAgentDTOList.add(estateAgentDTO);
+            for (EstateAgent estateAgent : estateAgents) {
+                EstateAgentDTO estateAgentDTO = estateAgentModelToDto(estateAgent);
+                estateAgentDTOList.add(estateAgentDTO);
+            }
+            return estateAgentDTOList;
+        } catch (Exception e) {
+            throw new DtoModelConvertException("Error converting EstateAgent to DTO", e);
         }
-        return estateAgentDTOList;
+
+
     }
 
-    public static List<OwnerDTO> ownersModelToDto(List<Owner> owners) {
-        List<OwnerDTO> ownersDTOList = new ArrayList<>();
+    public static List<OwnerDTO> ownersModelToDto(List<Owner> owners) throws DtoModelConvertException {
+        try {
+            List<OwnerDTO> ownersDTOList = new ArrayList<>();
 
-        for (Owner owner : owners) {
-            OwnerDTO ownerDTO = ownerModelToDto(owner);
-            ownersDTOList.add(ownerDTO);
+            for (Owner owner : owners) {
+                OwnerDTO ownerDTO = ownerModelToDto(owner);
+                ownersDTOList.add(ownerDTO);
+            }
+            return ownersDTOList;
+        } catch (Exception e) {
+            throw new DtoModelConvertException("Error converting Owner to DTO", e);
         }
-        return ownersDTOList;
+
     }
 
-    public static List<TenantDTO> tenantsModelToDto(List<Tenant> tenants) {
-        List<TenantDTO> tenantsDtoList = new ArrayList<>();
+    public static List<TenantDTO> tenantsModelToDto(List<Tenant> tenants) throws DtoModelConvertException {
+        try {
+            List<TenantDTO> tenantsDtoList = new ArrayList<>();
 
-        for (Tenant tenant : tenants) {
-            TenantDTO tenantDTO = tenantModelToDto(tenant);
-            tenantsDtoList.add(tenantDTO);
+            for (Tenant tenant : tenants) {
+                TenantDTO tenantDTO = tenantModelToDto(tenant);
+                tenantsDtoList.add(tenantDTO);
+            }
+            return tenantsDtoList;
+        } catch (Exception e) {
+            throw new DtoModelConvertException("Error converting Tenant to DTO", e);
         }
-        return tenantsDtoList;
-    }
 
+    }
 }

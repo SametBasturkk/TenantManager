@@ -1,7 +1,7 @@
 package com.tenantmanager.controller;
 
 import com.tenantmanager.dto.OwnerDTO;
-import com.tenantmanager.exception.CustomResponseException;
+import com.tenantmanager.exception.DtoModelConvertException;
 import com.tenantmanager.model.Owner;
 import com.tenantmanager.service.impl.OwnerServiceImpl;
 import com.tenantmanager.util.DTOConverter;
@@ -31,11 +31,11 @@ public class OwnerController {
         OwnerDTO response = converter.ownerModelToDto(ownerService.createOwner(owner));
         try {
             if (response == null) {
-                throw new CustomResponseException("Owner not created");
+                throw new DtoModelConvertException("Owner not created");
             } else {
                 return ResponseEntity.status(HttpStatus.CREATED).body(response);
             }
-        } catch (CustomResponseException e) {
+        } catch (DtoModelConvertException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
@@ -50,11 +50,11 @@ public class OwnerController {
         OwnerDTO response = converter.ownerModelToDto(ownerService.getOwnerByTCKN(TCKN));
         try {
             if (response == null) {
-                throw new CustomResponseException("Owner not found");
+                throw new DtoModelConvertException("Owner not found");
             } else {
                 return ResponseEntity.status(HttpStatus.OK).body(response);
             }
-        } catch (CustomResponseException e) {
+        } catch (DtoModelConvertException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }

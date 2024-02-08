@@ -1,6 +1,7 @@
 package com.tenantmanager.service.impl;
 
 import com.tenantmanager.dto.HouseDTO;
+import com.tenantmanager.exception.DbException;
 import com.tenantmanager.model.Apartment;
 import com.tenantmanager.model.House;
 import com.tenantmanager.model.Owner;
@@ -50,6 +51,6 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     public House getHouseById(Long houseId) {
-        return houseRepository.findById(houseId).orElse(null);
+        return houseRepository.findById(houseId).orElseThrow(() -> new DbException("House not found"));
     }
 }

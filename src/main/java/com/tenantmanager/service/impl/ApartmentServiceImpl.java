@@ -1,5 +1,6 @@
 package com.tenantmanager.service.impl;
 
+import com.tenantmanager.exception.DbException;
 import com.tenantmanager.model.Apartment;
 import com.tenantmanager.repository.ApartmentRepository;
 import com.tenantmanager.service.api.ApartmentService;
@@ -30,7 +31,7 @@ public class ApartmentServiceImpl implements ApartmentService {
 
     @Override
     public Apartment getApartmentById(Long apartmentId) {
-        return apartmentRepository.findById(apartmentId).orElse(null);
+        return apartmentRepository.findById(apartmentId).orElseThrow(() -> new DbException("Apartment not found"));
     }
 
     @Override

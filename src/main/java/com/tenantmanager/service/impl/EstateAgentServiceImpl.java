@@ -1,5 +1,6 @@
 package com.tenantmanager.service.impl;
 
+import com.tenantmanager.exception.DbException;
 import com.tenantmanager.model.EstateAgent;
 import com.tenantmanager.repository.EstateAgentRepository;
 import com.tenantmanager.service.api.EstateAgentService;
@@ -45,7 +46,7 @@ public class EstateAgentServiceImpl implements EstateAgentService {
 
     @Override
     public EstateAgent getEstateAgentById(Long estateAgentId) {
-        return estateAgentRepository.findById(estateAgentId).orElse(null);
+        return estateAgentRepository.findById(estateAgentId).orElseThrow(() -> new DbException("EstateAgent not found"));
     }
 
 
