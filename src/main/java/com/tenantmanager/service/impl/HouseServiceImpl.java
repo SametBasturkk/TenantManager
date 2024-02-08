@@ -15,11 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class HouseServiceImpl implements HouseService {
 
 
-    HouseRepository houseRepository;
+    private final HouseRepository houseRepository;
 
-    ApartmentService apartmentService;
+    private final ApartmentService apartmentService;
 
-    OwnerService ownerService;
+    private final OwnerService ownerService;
 
     public HouseServiceImpl(HouseRepository houseRepository, ApartmentService apartmentService, OwnerService ownerService) {
         this.houseRepository = houseRepository;

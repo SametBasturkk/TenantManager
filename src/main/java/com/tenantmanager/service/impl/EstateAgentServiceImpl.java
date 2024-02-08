@@ -30,19 +30,6 @@ public class EstateAgentServiceImpl implements EstateAgentService {
     @Transactional
     public EstateAgent createEstateAgent(EstateAgent estateAgent) {
 
-        if (!validatorService.validateTCKN(estateAgent.getEstateAgentTCKN())) {
-            throw new IllegalArgumentException("Invalid TCKN");
-        }
-
-        if (!validatorService.validatePhoneNumber(estateAgent.getEstateAgentPhone())) {
-            throw new IllegalArgumentException("Invalid Phone Number");
-        }
-
-        if (!validatorService.validateEmail(estateAgent.getEstateAgentMail())) {
-            throw new IllegalArgumentException("Invalid Email");
-        }
-
-
         return estateAgentRepository.save(estateAgent);
     }
 

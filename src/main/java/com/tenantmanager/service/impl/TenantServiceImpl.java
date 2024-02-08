@@ -26,19 +26,6 @@ public class TenantServiceImpl implements TenantService {
     @Transactional
     public Tenant createTenant(Tenant tenant) {
 
-        if (!validatorService.validateTCKN(tenant.getTenantTCKN())) {
-            throw new IllegalArgumentException("Invalid TCKN");
-        }
-
-        if (!validatorService.validatePhoneNumber(tenant.getTenantPhone())) {
-            throw new IllegalArgumentException("Invalid Phone Number");
-        }
-
-        if (!validatorService.validateEmail(tenant.getTenantMail())) {
-            throw new IllegalArgumentException("Invalid Email");
-        }
-
-
         return tenantRepository.save(tenant);
     }
 

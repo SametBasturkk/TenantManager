@@ -2,11 +2,14 @@ package com.tenantmanager.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
 @Entity
 @Table(name = "owners")
+@Validated
 public class Owner {
 
     @Id
@@ -20,6 +23,7 @@ public class Owner {
     @Column(nullable = false)
     private String ownerPhone;
     @Column(nullable = false)
+    @Email
     private String ownerMail;
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<House> ownerHouses;
@@ -28,7 +32,6 @@ public class Owner {
     private List<RentContract> rentContracts;
     @Column(nullable = false, unique = true, name = "owner_tckn")
     private String ownerTCKN;
-
 
 
     public String getOwnerName() {

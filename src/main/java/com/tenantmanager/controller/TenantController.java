@@ -6,6 +6,7 @@ import com.tenantmanager.model.Tenant;
 import com.tenantmanager.service.impl.TenantServiceImpl;
 import com.tenantmanager.util.DTOConverter;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class TenantController {
     }
 
     @PostMapping("/create-tenant")
-    public ResponseEntity createTenant(@RequestBody Tenant tenant) {
+    public ResponseEntity createTenant(@RequestBody @Valid Tenant tenant) {
         TenantDTO response = converter.tenantModelToDto(tenantService.createTenant(tenant));
         try {
             if (response == null) {

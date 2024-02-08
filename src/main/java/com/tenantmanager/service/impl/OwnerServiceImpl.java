@@ -26,19 +26,6 @@ public class OwnerServiceImpl implements OwnerService {
     @Transactional
     public Owner createOwner(Owner owner) {
 
-        if (!validatorService.validateTCKN(owner.getOwnerTCKN())) {
-            throw new IllegalArgumentException("Invalid TCKN");
-        }
-
-        if (!validatorService.validatePhoneNumber(owner.getOwnerPhone())) {
-            throw new IllegalArgumentException("Invalid Phone Number");
-        }
-
-        if (!validatorService.validateEmail(owner.getOwnerMail())) {
-            throw new IllegalArgumentException("Invalid Email");
-        }
-
-
         return ownerRepository.save(owner);
     }
 

@@ -1,10 +1,27 @@
 package com.tenantmanager.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 public class TenantDTO {
+    @NotBlank(message = "Tenant name cannot be blank")
     private String tenantName;
+
+    @NotBlank(message = "Tenant surname cannot be blank")
     private String tenantSurname;
+
+    @NotBlank(message = "Tenant phone cannot be blank")
+    @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits")
     private String tenantPhone;
+
+    @NotBlank(message = "Tenant mail cannot be blank")
+    @Pattern(regexp = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$", message = "Invalid email format")
     private String tenantMail;
+
+    @NotBlank(message = "Tenant TCKN cannot be blank")
+    @Size(min = 11, max = 11, message = "TCKN must be 11 characters")
+    @Pattern(regexp = "\\d{11}", message = "TCKN must be numeric")
     private String tenantTCKN;
 
     public String getTenantName() {

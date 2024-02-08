@@ -11,11 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class RentContractServiceImpl implements RentContractService {
 
 
-    RentContractRepository rentContractRepository;
-    EstateAgentService estateAgentService;
-    TenantService tenantService;
-    HouseService houseService;
-    ApartmentService apartmentService;
+    private final RentContractRepository rentContractRepository;
+    private final EstateAgentService estateAgentService;
+    private final TenantService tenantService;
+    private final HouseService houseService;
+    private final ApartmentService apartmentService;
 
 
     public RentContractServiceImpl(RentContractRepository rentContractRepository, EstateAgentService estateAgentService, TenantService tenantService, HouseService houseService, ApartmentService apartmentService) {

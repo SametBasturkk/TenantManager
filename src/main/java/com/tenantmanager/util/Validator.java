@@ -1,41 +1,12 @@
 package com.tenantmanager.util;
 
-import com.tenantmanager.service.api.ValidatorService;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Validator implements ValidatorService {
+    public static final String TCKN_REGEX = "^[1-9]{1}[0-9]{10}$";
+    public static final String PHONE_NUMBER_REGEX = "/^(?:\\+90.?5|0090.?5|905|0?5)(?:[01345][0-9])\\s?(?:[0-9]{3})\\s?(?:[0-9]{2})\\s?(?:[0-9]{2})$/";
+    public static final String NAME_REGEX = "^[a-zA-Z]+$";
+    public static final String SURNAME_REGEX = "^[a-zA-Z]+$";
 
-    @Override
-    public boolean validateTCKN(String TCKN) {
-        if (TCKN.length() != 11 || TCKN.charAt(0) == '0') {
-            return false;
-        }
-
-        int total = calculateSumOfDigits(TCKN, 10);
-        int lastDigit = Integer.parseInt(TCKN.substring(10, 11));
-
-        return (total % 10) == lastDigit;
-    }
-
-    @Override
-    public boolean validatePhoneNumber(String phoneNumber) {
-        return phoneNumber.length() == 10 && phoneNumber.charAt(0) == '5';
-    }
-
-    @Override
-    public boolean validateEmail(String email) {
-        return email.contains("@") && email.contains(".");
-    }
-
-    private int calculateSumOfDigits(String number, int length) {
-        int total = 0;
-        for (int i = 0; i < length; i++) {
-            char digitChar = number.charAt(i);
-            if (Character.isDigit(digitChar)) {
-                total += Character.getNumericValue(digitChar);
-            }
-        }
-        return total;
-    }
 }

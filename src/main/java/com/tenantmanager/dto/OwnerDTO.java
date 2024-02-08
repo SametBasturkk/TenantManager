@@ -1,15 +1,33 @@
 package com.tenantmanager.dto;
 
 import com.tenantmanager.model.House;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
 public class OwnerDTO {
+
+    @NotBlank(message = "Owner name cannot be blank")
     private String ownerName;
+
+    @NotBlank(message = "Owner surname cannot be blank")
     private String ownerSurname;
+
+    @NotBlank(message = "Owner phone cannot be blank")
+    @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits")
     private String ownerPhone;
+
+    @NotBlank(message = "Owner mail cannot be blank")
+    @Pattern(regexp = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$", message = "Invalid email format")
     private String ownerMail;
+
     private List<House> ownerHouse;
+
+    @NotBlank(message = "Owner TCKN cannot be blank")
+    @Size(min = 11, max = 11, message = "TCKN must be 11 characters")
+    @Pattern(regexp = "\\d{11}", message = "TCKN must be numeric")
     private String ownerTCKN;
 
     public String getOwnerName() {

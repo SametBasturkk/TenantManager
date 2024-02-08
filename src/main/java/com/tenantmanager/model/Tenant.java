@@ -1,11 +1,14 @@
 package com.tenantmanager.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
 @Entity
 @Table(name = "tenants")
+@Validated
 public class Tenant {
     @Id
     @GeneratedValue
@@ -18,6 +21,7 @@ public class Tenant {
     @Column(nullable = false)
     private String tenantPhone;
     @Column(nullable = false)
+    @Email
     private String tenantMail;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")

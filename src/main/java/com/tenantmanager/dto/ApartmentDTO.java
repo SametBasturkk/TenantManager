@@ -6,6 +6,7 @@ import java.util.List;
 
 public class ApartmentDTO {
 
+
     private String uuid;
     private String apartmentAddress;
     private String apartmentName;

@@ -6,6 +6,7 @@ import com.tenantmanager.model.EstateAgent;
 import com.tenantmanager.service.impl.EstateAgentServiceImpl;
 import com.tenantmanager.util.DTOConverter;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class EstateAgentController {
     }
 
     @PostMapping("/create-estateagent")
-    public ResponseEntity createEstateAgent(@RequestBody EstateAgent estateAgent) {
+    public ResponseEntity createEstateAgent(@RequestBody @Valid EstateAgent estateAgent) {
         EstateAgentDTO response = converter.estateAgentModelToDto(estateAgentService.createEstateAgent(estateAgent));
         try {
             if (response == null) {

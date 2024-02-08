@@ -6,6 +6,7 @@ import com.tenantmanager.model.Owner;
 import com.tenantmanager.service.impl.OwnerServiceImpl;
 import com.tenantmanager.util.DTOConverter;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@RateLimiter(name = "simpleRateLimit", fallbackMethod = "fallback")
+@RateLimiter(name = "simpleRateLimit")
 public class OwnerController {
 
     private final OwnerServiceImpl ownerService;
@@ -26,7 +27,7 @@ public class OwnerController {
 
 
     @PostMapping("/create-owner")
-    public ResponseEntity createOwner(@RequestBody Owner owner) {
+    public ResponseEntity createOwner(@RequestBody @Valid Owner owner) {
         OwnerDTO response = converter.ownerModelToDto(ownerService.createOwner(owner));
         try {
             if (response == null) {
