@@ -4,6 +4,7 @@ import com.tenantmanager.dto.RentContractDTO;
 import com.tenantmanager.model.*;
 import com.tenantmanager.repository.RentContractRepository;
 import com.tenantmanager.service.api.*;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,14 +17,16 @@ public class RentContractServiceImpl implements RentContractService {
     private final TenantService tenantService;
     private final HouseService houseService;
     private final ApartmentService apartmentService;
+    private final ModelMapper modelMapper;
 
 
-    public RentContractServiceImpl(RentContractRepository rentContractRepository, EstateAgentService estateAgentService, TenantService tenantService, HouseService houseService, ApartmentService apartmentService) {
+    public RentContractServiceImpl(RentContractRepository rentContractRepository, EstateAgentService estateAgentService, TenantService tenantService, HouseService houseService, ApartmentService apartmentService, ModelMapper modelMapper) {
         this.rentContractRepository = rentContractRepository;
         this.estateAgentService = estateAgentService;
         this.tenantService = tenantService;
         this.houseService = houseService;
         this.apartmentService = apartmentService;
+        this.modelMapper = modelMapper;
     }
 
 
@@ -51,5 +54,24 @@ public class RentContractServiceImpl implements RentContractService {
 
         rentContractRepository.save(rentContract);
 
+    }
+
+    @Override
+    @Transactional
+    public void deleteRentContract(Long rentContractId) {
+        rentContractRepository.deleteById(rentContractId);
+    }
+
+    @Override
+    @Transactional
+    public void updateRentContract(Long rentContractId, RentContractDTO rentContractDTO) {
+        RentContract rentContract = rentContractRepository.findById(rentContractId).orElseThrow(() -> new IllegalArgumentException("Rent contract not found"));
+        modelMapper.map(rentContractDTO, rentContract);
+        rentContractRepository.save(rentContract);
+    }
+
+    @Override
+    public Object getRentContractByTenantId(Long tenantId) {
+        return rentContractRepository.findByTenantId(tenantId);
     }
 }

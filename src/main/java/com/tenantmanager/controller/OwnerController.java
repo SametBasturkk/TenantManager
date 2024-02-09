@@ -1,7 +1,6 @@
 package com.tenantmanager.controller;
 
 import com.tenantmanager.dto.OwnerDTO;
-import com.tenantmanager.exception.DtoModelConvertException;
 import com.tenantmanager.model.Owner;
 import com.tenantmanager.service.impl.OwnerServiceImpl;
 import com.tenantmanager.util.DTOConverter;
@@ -29,15 +28,7 @@ public class OwnerController {
     @PostMapping("/create-owner")
     public ResponseEntity createOwner(@RequestBody @Valid Owner owner) {
         OwnerDTO response = converter.ownerModelToDto(ownerService.createOwner(owner));
-        try {
-            if (response == null) {
-                throw new DtoModelConvertException("Owner not created");
-            } else {
-                return ResponseEntity.status(HttpStatus.CREATED).body(response);
-            }
-        } catch (DtoModelConvertException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/get-owner-by-name-surname")
@@ -48,15 +39,19 @@ public class OwnerController {
     @GetMapping("/get-owner-by-tckn")
     public ResponseEntity getOwnerByTCKN(@RequestParam String TCKN) {
         OwnerDTO response = converter.ownerModelToDto(ownerService.getOwnerByTCKN(TCKN));
-        try {
-            if (response == null) {
-                throw new DtoModelConvertException("Owner not found");
-            } else {
-                return ResponseEntity.status(HttpStatus.OK).body(response);
-            }
-        } catch (DtoModelConvertException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PostMapping("/delete-owner")
+    public ResponseEntity deleteOwner(@RequestParam Long ownerId) {
+        ownerService.deleteOwner(ownerId);
+        return ResponseEntity.status(HttpStatus.OK).body("Owner deleted");
+    }
+
+    @PostMapping("/update-owner")
+    public ResponseEntity updateOwner(@RequestParam Long ownerId, @RequestBody OwnerDTO owner) {
+        ownerService.updateOwner(ownerId, owner);
+        return ResponseEntity.status(HttpStatus.OK).body("Owner updated");
     }
 
     public ResponseEntity fallback(Exception e) {

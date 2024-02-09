@@ -48,6 +48,13 @@ public class ApartmentController {
         return ResponseEntity.status(HttpStatus.OK).body("Apartment deleted");
     }
 
+    @PostMapping("/update-apartment")
+    public ResponseEntity updateApartment(@RequestParam Long apartmentId, @RequestParam String apartmentName, String apartmentAddress) {
+        apartmentService.updateApartment(apartmentId, apartmentName, apartmentAddress);
+        logger.info("Apartment updated");
+        return ResponseEntity.status(HttpStatus.OK).body("Apartment updated");
+    }
+
     public ResponseEntity fallback(Exception e) {
         logger.error("Too many requests");
         return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body("Too many requests");

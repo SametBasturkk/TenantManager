@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 @EnableJpaRepositories
 public interface HouseRepository extends JpaRepository<House,Long> {
+    Object findByOwnerId(Long ownerId);
 }

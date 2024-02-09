@@ -1,7 +1,6 @@
 package com.tenantmanager.controller;
 
 import com.tenantmanager.dto.EstateAgentDTO;
-import com.tenantmanager.exception.DtoModelConvertException;
 import com.tenantmanager.model.EstateAgent;
 import com.tenantmanager.service.impl.EstateAgentServiceImpl;
 import com.tenantmanager.util.DTOConverter;
@@ -34,15 +33,7 @@ public class EstateAgentController {
     public ResponseEntity createEstateAgent(@RequestBody @Valid EstateAgent estateAgent) {
         EstateAgentDTO response = converter.estateAgentModelToDto(estateAgentService.createEstateAgent(estateAgent));
         logger.info("EstateAgent created");
-        try {
-            if (response == null) {
-                throw new DtoModelConvertException("EstateAgent not created");
-            } else {
-                return ResponseEntity.status(HttpStatus.CREATED).body(response);
-            }
-        } catch (DtoModelConvertException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/get-estateagent-by-name-surname")
@@ -55,15 +46,21 @@ public class EstateAgentController {
     public ResponseEntity getEstateAgentByTCKN(@RequestParam String TCKN) {
         logger.info("EstateAgent retrieved");
         EstateAgentDTO response = converter.estateAgentModelToDto(estateAgentService.getEstateAgentByTCKN(TCKN));
-        try {
-            if (response == null) {
-                throw new DtoModelConvertException("EstateAgent not found");
-            } else {
-                return ResponseEntity.status(HttpStatus.OK).body(response);
-            }
-        } catch (DtoModelConvertException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PostMapping("/delete-estateagent")
+    public ResponseEntity deleteEstateAgent(@RequestParam Long estateAgentId) {
+        estateAgentService.deleteEstateAgent(estateAgentId);
+        logger.info("EstateAgent deleted");
+        return ResponseEntity.status(HttpStatus.OK).body("EstateAgent deleted");
+    }
+
+    @PostMapping("/update-estateagent")
+    public ResponseEntity updateEstateAgent(@RequestParam Long estateAgentId, @RequestBody EstateAgentDTO estateAgent) {
+        estateAgentService.updateEstateAgent(estateAgentId, estateAgent);
+        logger.info("EstateAgent updated");
+        return ResponseEntity.status(HttpStatus.OK).body("EstateAgent updated");
     }
 
 

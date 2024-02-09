@@ -1,5 +1,6 @@
 package com.tenantmanager.service.api;
 
+import com.tenantmanager.dto.EstateAgentDTO;
 import com.tenantmanager.model.EstateAgent;
 
 import java.util.List;
@@ -12,5 +13,9 @@ public interface EstateAgentService {
 
     public EstateAgent createEstateAgent(EstateAgent estateAgent);
 
-    EstateAgent getEstateAgentById(Long estateAgentId);
+    public EstateAgent getEstateAgentById(Long estateAgentId);
+
+    public void deleteEstateAgent(Long estateAgentId);
+
+    public void updateEstateAgent(Long estateAgentId, EstateAgentDTO estateAgent);
 }

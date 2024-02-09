@@ -19,8 +19,12 @@ import java.util.List;
 @Service
 public class DTOConverter {
 
-    private static ModelMapper modelMapper = new ModelMapper();
+    private static ModelMapper modelMapper;
     private static ObjectLogger logObject = new ObjectLogger();
+
+    public DTOConverter(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
 
 
     public static OwnerDTO ownerModelToDto(Owner owner) throws DtoModelConvertException {

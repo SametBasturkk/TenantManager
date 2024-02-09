@@ -13,4 +13,6 @@ public interface ApartmentService {
     public List<Apartment> getApartments();
 
     public void deleteApartment(Long apartmentId);
+
+    void updateApartment(Long apartmentId, String apartmentName, String apartmentAddress);
 }

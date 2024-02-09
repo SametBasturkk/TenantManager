@@ -1,5 +1,6 @@
 package com.tenantmanager.service.api;
 
+import com.tenantmanager.dto.OwnerDTO;
 import com.tenantmanager.model.Owner;
 
 import java.util.List;
@@ -14,4 +15,7 @@ public interface OwnerService {
 
     public Owner getOwnerById(Long ownerId);
 
+    void deleteOwner(Long ownerId);
+
+    void updateOwner(Long ownerId, OwnerDTO owner);
 }

@@ -53,4 +53,24 @@ public class HouseServiceImpl implements HouseService {
     public House getHouseById(Long houseId) {
         return houseRepository.findById(houseId).orElseThrow(() -> new DbException("House not found"));
     }
+
+    @Override
+    @Transactional
+    public void deleteHouse(Long houseId) {
+        houseRepository.deleteById(houseId);
+    }
+
+    @Override
+    @Transactional
+    public void updateHouseOwner(Long houseId, Long ownerId) {
+        House house = houseRepository.findById(houseId).orElseThrow(() -> new DbException("House not found"));
+        Owner owner = ownerService.getOwnerById(ownerId);
+        house.setOwner(owner);
+        houseRepository.save(house);
+    }
+
+    @Override
+    public Object getHouseByOwnerId(Long ownerId) {
+        return houseRepository.findByOwnerId(ownerId);
+    }
 }

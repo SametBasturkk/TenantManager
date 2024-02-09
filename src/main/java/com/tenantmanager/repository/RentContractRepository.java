@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @EnableJpaRepositories
 public interface RentContractRepository extends JpaRepository<RentContract, Long> {
 
+    Object findByTenantId(Long tenantId);
 }

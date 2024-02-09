@@ -1,10 +1,12 @@
 package com.tenantmanager.service.impl;
 
+import com.tenantmanager.dto.OwnerDTO;
 import com.tenantmanager.exception.DbException;
 import com.tenantmanager.model.Owner;
 import com.tenantmanager.repository.OwnerRepository;
 import com.tenantmanager.service.api.OwnerService;
 import com.tenantmanager.util.Validator;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,9 +19,12 @@ public class OwnerServiceImpl implements OwnerService {
 
     private final Validator validatorService;
 
-    public OwnerServiceImpl(OwnerRepository ownerRepository, Validator validatorService) {
+    private final ModelMapper modelMapper;
+
+    public OwnerServiceImpl(OwnerRepository ownerRepository, Validator validatorService, ModelMapper modelMapper) {
         this.ownerRepository = ownerRepository;
         this.validatorService = validatorService;
+        this.modelMapper = modelMapper;
     }
 
 
@@ -49,5 +54,18 @@ public class OwnerServiceImpl implements OwnerService {
         return ownerRepository.findByOwnerTCKN(TCKN);
     }
 
+    @Override
+    @Transactional
+    public void deleteOwner(Long ownerId) {
+        ownerRepository.deleteById(ownerId);
+    }
+
+    @Override
+    @Transactional
+    public void updateOwner(Long ownerId, OwnerDTO ownerDTO) {
+        Owner ownerModel = ownerRepository.findById(ownerId).orElseThrow(() -> new DbException("Owner not found"));
+        modelMapper.map(ownerDTO, ownerModel);
+        ownerRepository.save(ownerModel);
+    }
 
 }
