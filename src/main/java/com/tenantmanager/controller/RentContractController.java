@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RateLimiter(name = "simpleRateLimit")
 public class RentContractController {
 
-    RentContractServiceImpl rentContractService;
+    private final RentContractServiceImpl rentContractService;
 
     public RentContractController(RentContractServiceImpl rentContractService) {
         this.rentContractService = rentContractService;

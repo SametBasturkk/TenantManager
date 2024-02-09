@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 @EnableJpaRepositories
 public interface EstateAgentRepository extends JpaRepository<EstateAgent, Long> {
-    List findByEstateAgentNameAndEstateAgentSurname(String estateAgentName, String estateAgentSurname);
+    List<EstateAgent> findByEstateAgentNameAndEstateAgentSurname(String estateAgentName, String estateAgentSurname);
     EstateAgent findByEstateAgentTCKN(String TCKN);
 
 }

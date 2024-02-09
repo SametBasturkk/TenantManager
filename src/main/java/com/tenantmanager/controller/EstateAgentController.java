@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class EstateAgentController {
 
     private final EstateAgentServiceImpl estateAgentService;
-    private DTOConverter converter;
+    private final DTOConverter converter;
 
     private static final Logger logger = LoggerFactory.getLogger(EstateAgentController.class);
 

@@ -13,9 +13,9 @@ public interface TenantService {
 
     public Tenant createTenant(Tenant tenant);
 
-    Tenant getTenantById(Long tenantId);
+    public Tenant getTenantById(Long tenantId);
 
-    void deleteTenant(Long tenantId);
+    public void deleteTenant(Long tenantId);
 
-    void updateTenant(Long tenantId, TenantDTO tenant);
+    public void updateTenant(Long tenantId, TenantDTO tenant);
 }

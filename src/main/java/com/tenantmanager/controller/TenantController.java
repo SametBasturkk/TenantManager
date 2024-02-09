@@ -19,7 +19,7 @@ import java.util.List;
 public class TenantController {
 
     private final TenantServiceImpl tenantService;
-    private DTOConverter converter;
+    private final DTOConverter converter;
 
     public TenantController(TenantServiceImpl tenantService, DTOConverter converter) {
         this.tenantService = tenantService;

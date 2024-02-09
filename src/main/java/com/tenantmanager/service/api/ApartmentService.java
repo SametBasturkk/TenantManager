@@ -14,5 +14,5 @@ public interface ApartmentService {
 
     public void deleteApartment(Long apartmentId);
 
-    void updateApartment(Long apartmentId, String apartmentName, String apartmentAddress);
+    public void updateApartment(Long apartmentId, String apartmentName, String apartmentAddress);
 }

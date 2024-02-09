@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 @EnableJpaRepositories
 public interface OwnerRepository extends JpaRepository<Owner, Long> {
-    List findByOwnerNameAndOwnerSurname(String ownerName, String ownerSurname);
+    List<Owner> findByOwnerNameAndOwnerSurname(String ownerName, String ownerSurname);
     Owner findByOwnerTCKN(String TCKN);
 
 

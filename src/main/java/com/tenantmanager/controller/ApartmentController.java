@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.*;
 @RateLimiter(name = "simpleRateLimit")
 public class ApartmentController {
 
-    ApartmentServiceImpl apartmentService;
+    private final ApartmentServiceImpl apartmentService;
 
-    DTOConverter converter;
+    private final DTOConverter converter;
 
     private static final Logger logger = LoggerFactory.getLogger(ApartmentController.class);
 

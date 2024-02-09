@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class OwnerController {
 
     private final OwnerServiceImpl ownerService;
-    private DTOConverter converter;
+    private final DTOConverter converter;
 
     public OwnerController(OwnerServiceImpl ownerService, DTOConverter converter) {
         this.ownerService = ownerService;

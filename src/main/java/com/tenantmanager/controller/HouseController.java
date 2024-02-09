@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class HouseController {
 
 
-    HouseServiceImpl houseService;
+    private final HouseServiceImpl houseService;
 
     public HouseController(HouseServiceImpl houseService) {
         this.houseService = houseService;

@@ -15,7 +15,7 @@ public interface OwnerService {
 
     public Owner getOwnerById(Long ownerId);
 
-    void deleteOwner(Long ownerId);
+    public void deleteOwner(Long ownerId);
 
-    void updateOwner(Long ownerId, OwnerDTO owner);
+    public void updateOwner(Long ownerId, OwnerDTO owner);
 }

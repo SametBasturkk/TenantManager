@@ -13,7 +13,7 @@ import java.util.List;
 public interface TenantRepository extends JpaRepository<Tenant, Long> {
 
     @Query("SELECT t FROM Tenant t WHERE t.tenantName = ?1 AND t.tenantSurname = ?2")
-    List findByTenantNameAndTenantSurname(String tenantName, String tenantSurname);
+    List<Tenant> findByTenantNameAndTenantSurname(String tenantName, String tenantSurname);
 
     @Query(value = "SELECT * FROM tenants WHERE tenant_tckn = ?1", nativeQuery = true)
     Tenant findByTenantTCKN(String TCKN);
