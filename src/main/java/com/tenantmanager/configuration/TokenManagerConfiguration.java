@@ -6,23 +6,23 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "jwt")
 public class TokenManagerConfiguration {
-    private static String SECRET;
+    private String secret;
+    private Long expiration;
 
-    private static long EXPIRATION;
 
-    public static String getSECRET() {
-        return SECRET;
+    public String getSecret() {
+        return secret;
     }
 
-    public static void setSECRET(String SECRET) {
-        TokenManagerConfiguration.SECRET = SECRET;
+    public void setSecret(String secret) {
+        this.secret = secret;
     }
 
-    public static long getEXPIRATION() {
-        return EXPIRATION;
+    public Long getExpiration() {
+        return expiration;
     }
 
-    public static void setEXPIRATION(long EXPIRATION) {
-        TokenManagerConfiguration.EXPIRATION = EXPIRATION;
+    public void setExpiration(Long expiration) {
+        this.expiration = expiration;
     }
 }

@@ -11,10 +11,21 @@ import java.util.Date;
 @Service
 public class TokenManagerServiceImpl implements TokenManagerService {
 
+    private static TokenManagerConfiguration tokenManagerConfiguration;
+
+
+    TokenManagerServiceImpl(TokenManagerConfiguration TokenManagerConfiguration) {
+        this.tokenManagerConfiguration = TokenManagerConfiguration;
+    }
+
 
     @Override
     public String generateToken(String content) {
-        return Jwts.builder().setSubject(content).setExpiration(new Date(System.currentTimeMillis() + TokenManagerConfiguration.getEXPIRATION())).signWith(SignatureAlgorithm.HS256, TokenManagerConfiguration.getSECRET()).compact();
+        return Jwts.builder()
+                .setSubject(content)
+                .setExpiration(new Date(System.currentTimeMillis() + tokenManagerConfiguration.getExpiration()))
+                .signWith(SignatureAlgorithm.HS256, tokenManagerConfiguration.getSecret())
+                .compact();
     }
 
 }
