@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
+import static com.tenantmanager.util.Validator.PHONE_NUMBER_REGEX;
+
 public class OwnerDTO {
 
     @NotBlank(message = "Owner name cannot be blank")
@@ -16,7 +18,7 @@ public class OwnerDTO {
     private String ownerSurname;
 
     @NotBlank(message = "Owner phone cannot be blank")
-    @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits")
+    @Pattern(regexp = PHONE_NUMBER_REGEX, message = "Phone number must be 10 digits")
     private String ownerPhone;
 
     @NotBlank(message = "Owner mail cannot be blank")

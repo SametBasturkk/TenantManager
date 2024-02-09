@@ -4,6 +4,7 @@ import com.tenantmanager.dto.OwnerDTO;
 import com.tenantmanager.model.Owner;
 import com.tenantmanager.service.impl.OwnerServiceImpl;
 import com.tenantmanager.util.DTOConverter;
+import com.tenantmanager.service.impl.TokenManagerServiceImpl;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -18,17 +19,19 @@ public class OwnerController {
 
     private final OwnerServiceImpl ownerService;
     private final DTOConverter converter;
+    private final TokenManagerServiceImpl tokenManagerServiceImpl;
 
-    public OwnerController(OwnerServiceImpl ownerService, DTOConverter converter) {
+    public OwnerController(OwnerServiceImpl ownerService, DTOConverter converter, TokenManagerServiceImpl tokenManagerServiceImpl) {
         this.ownerService = ownerService;
         this.converter = converter;
+        this.tokenManagerServiceImpl = tokenManagerServiceImpl;
     }
 
 
     @PostMapping("/create-owner")
     public ResponseEntity createOwner(@RequestBody @Valid Owner owner) {
         OwnerDTO response = converter.ownerModelToDto(ownerService.createOwner(owner));
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity.status(HttpStatus.CREATED).header("JWT", tokenManagerServiceImpl.generateToken("test")).body(response);
     }
 
     @GetMapping("/get-owner-by-name-surname")
