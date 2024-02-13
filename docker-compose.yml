@@ -1,0 +1,18 @@
+version: '0.1'
+services:
+  app:
+    container_name: TenantManager
+    image: tenant-manager
+    build: ./
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgresqldb
+  postgresqldb:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=samet123
+      - POSTGRES_USER=samet
+      - POSTGRES_DB=db_sisal
