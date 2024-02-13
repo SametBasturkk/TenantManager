@@ -23,9 +23,7 @@ jobs:
         working-directory: ${{github.workspace}}
 
       - name: Set up Docker Compose
-        uses: docker/compose-cli@v0.1.1
-        with:
-          version: '1.29.2'
+        uses: withlogicco/setup-compose-cli@v1
 
       - name: Build and Push Docker Images
         run: |
