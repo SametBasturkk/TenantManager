@@ -2,7 +2,7 @@ version: '0.1'
 services:
   app:
     container_name: TenantManager
-    image: tenant-manager
+    image: TenantManager
     build: ./
     ports:
       - "3000:8080"
