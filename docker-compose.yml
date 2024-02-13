@@ -16,8 +16,6 @@ services:
   postgresqldb:
     image: postgres:latest
     container_name: postgresqldb
-    ports:
-      - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=samet123
       - POSTGRES_USER=samet
