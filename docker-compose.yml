@@ -5,7 +5,7 @@ services:
     image: tenant-manager
     build: ./
     ports:
-      - "8080:8080"
+      - "3000:8080"
     depends_on:
       - postgresqldb
   postgresqldb:
