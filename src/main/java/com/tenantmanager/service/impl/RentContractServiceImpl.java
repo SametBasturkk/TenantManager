@@ -66,7 +66,7 @@ public class RentContractServiceImpl implements RentContractService {
     @Override
     @Transactional
     public void updateRentContract(Long rentContractId, RentContractDTO rentContractDTO) {
-        RentContract rentContract = rentContractRepository.findById(rentContractId).orElseThrow(() -> new IllegalArgumentException("Rent contract not found"));
+        RentContract rentContract = rentContractRepository.findById(rentContractId).orElseThrow(() -> new DbException("Rent contract not found"));
         modelMapper.map(rentContractDTO, rentContract);
         rentContractRepository.save(rentContract);
     }

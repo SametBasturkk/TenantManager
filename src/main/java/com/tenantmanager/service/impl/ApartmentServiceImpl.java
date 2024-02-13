@@ -38,8 +38,11 @@ public class ApartmentServiceImpl implements ApartmentService {
     }
 
     @Override
-    public List getApartments() {
+    public List<Apartment> getApartments() {
         List<Apartment> apartments = new ArrayList<>(apartmentRepository.findAll());
+        if (apartments.isEmpty()) {
+            throw new DbException("No apartments found");
+        }
         return apartments;
     }
 

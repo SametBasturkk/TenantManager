@@ -38,7 +38,7 @@ public class TenantServiceImpl implements TenantService {
     public List getTenantByNameAndSurname(String tenantName, String tenantSurname) {
         List<Tenant> tenantList = tenantRepository.findByTenantNameAndTenantSurname(tenantName, tenantSurname);
         if (tenantList.isEmpty()) {
-            throw new IllegalArgumentException("Tenant not found");
+            throw new DbException("Tenant not found");
         }
         return tenantList;
     }

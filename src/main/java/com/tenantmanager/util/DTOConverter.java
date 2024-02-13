@@ -20,10 +20,11 @@ import java.util.List;
 public class DTOConverter {
 
     private static ModelMapper modelMapper;
-    private static ObjectLogger logObject = new ObjectLogger();
+    private static ObjectLogger logObject;
 
-    public DTOConverter(ModelMapper modelMapper) {
+    public DTOConverter(ModelMapper modelMapper, ObjectLogger logObject) {
         this.modelMapper = modelMapper;
+        this.logObject = logObject;
     }
 
 

@@ -37,7 +37,7 @@ public class HouseServiceImpl implements HouseService {
         Apartment apartment = apartmentService.getApartmentById(houseDTO.getApartmentId());
 
         if (owner == null || apartment == null) {
-            throw new RuntimeException("Owner or Apartment not found");
+            throw new DbException("Owner or Apartment not found");
         }
 
         houseModel.setOwner(owner);

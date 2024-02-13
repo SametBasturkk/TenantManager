@@ -50,7 +50,11 @@ public class EstateAgentServiceImpl implements EstateAgentService {
 
     @Override
     public EstateAgent getEstateAgentByTCKN(String TCKN) {
-        return estateAgentRepository.findByEstateAgentTCKN(TCKN);
+        EstateAgent estateAgent = estateAgentRepository.findByEstateAgentTCKN(TCKN);
+        if (estateAgent == null) {
+            throw new DbException("EstateAgent not found");
+        }
+        return estateAgent;
     }
 
     @Override

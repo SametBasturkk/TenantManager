@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TenantService {
 
-    public List getTenantByNameAndSurname(String tenantName, String tenantSurname);
+    public List<Tenant> getTenantByNameAndSurname(String tenantName, String tenantSurname);
 
     public Tenant getTenantByTCKN(String TCKN);
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface EstateAgentService {
 
-    public List getEstateAgentByNameAndSurname(String estateAgentName, String estateAgentSurname);
+    public List<EstateAgent> getEstateAgentByNameAndSurname(String estateAgentName, String estateAgentSurname);
 
     public EstateAgent getEstateAgentByTCKN(String TCKN);
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OwnerService {
 
-    public List getOwnerByNameAndSurname(String ownerName, String ownerSurname);
+    public List<Owner> getOwnerByNameAndSurname(String ownerName, String ownerSurname);
 
     public Owner getOwnerByTCKN(String TCKN);
 

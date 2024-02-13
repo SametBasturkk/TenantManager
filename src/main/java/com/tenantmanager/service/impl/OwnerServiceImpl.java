@@ -41,10 +41,10 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public List getOwnerByNameAndSurname(String ownerName, String ownerSurname) {
+    public List<Owner> getOwnerByNameAndSurname(String ownerName, String ownerSurname) {
         List<Owner> ownerList = ownerRepository.findByOwnerNameAndOwnerSurname(ownerName, ownerSurname);
         if (ownerList.isEmpty()) {
-            throw new IllegalArgumentException("Owner not found");
+            throw new DbException("Owner not found");
         }
         return ownerList;
     }
