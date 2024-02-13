@@ -1,0 +1,29 @@
+name: Docker TenantManager Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+          cache-dependency-path: 'sub-project/pom.xml'
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+      - name: Build Docker image
+        run: docker build -t sametklou1907/TenantManager:latest .
+
+      - name: Push to Docker Hub
+        run: |
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          docker push sametklou1907/TenantManager:latest
