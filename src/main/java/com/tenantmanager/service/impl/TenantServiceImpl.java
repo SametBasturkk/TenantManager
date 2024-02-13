@@ -45,7 +45,11 @@ public class TenantServiceImpl implements TenantService {
 
     @Override
     public Tenant getTenantByTCKN(String TCKN) {
-        return tenantRepository.findByTenantTCKN(TCKN);
+        Tenant tenant = tenantRepository.findByTenantTCKN(TCKN);
+        if (tenant == null) {
+            throw new DbException("Tenant not found");
+        }
+        return tenant;
     }
 
     @Override

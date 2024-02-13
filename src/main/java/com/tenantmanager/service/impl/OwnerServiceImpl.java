@@ -51,7 +51,11 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public Owner getOwnerByTCKN(String TCKN) {
-        return ownerRepository.findByOwnerTCKN(TCKN);
+        Owner owner = ownerRepository.findByOwnerTCKN(TCKN);
+        if (owner == null) {
+            throw new DbException("Owner not found");
+        }
+        return owner;
     }
 
     @Override

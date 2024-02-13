@@ -39,7 +39,7 @@ public class ApartmentServiceImpl implements ApartmentService {
 
     @Override
     public List getApartments() {
-        List apartments = new ArrayList<>(apartmentRepository.findAll());
+        List<Apartment> apartments = new ArrayList<>(apartmentRepository.findAll());
         return apartments;
     }
 

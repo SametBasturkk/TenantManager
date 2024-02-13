@@ -1,6 +1,7 @@
 package com.tenantmanager.service.impl;
 
 import com.tenantmanager.dto.RentContractDTO;
+import com.tenantmanager.exception.DbException;
 import com.tenantmanager.model.*;
 import com.tenantmanager.repository.RentContractRepository;
 import com.tenantmanager.service.api.*;
@@ -72,6 +73,10 @@ public class RentContractServiceImpl implements RentContractService {
 
     @Override
     public Object getRentContractByTenantId(Long tenantId) {
-        return rentContractRepository.findByTenantId(tenantId);
+        Object rentContract = rentContractRepository.findByTenantId(tenantId);
+        if (rentContract == null) {
+            throw new DbException("Rent contract not found");
+        }
+        return rentContract;
     }
 }

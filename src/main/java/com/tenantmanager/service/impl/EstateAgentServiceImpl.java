@@ -40,8 +40,12 @@ public class EstateAgentServiceImpl implements EstateAgentService {
     }
 
     @Override
-    public List getEstateAgentByNameAndSurname(String estateAgentName, String estateAgentSurname) {
-        return estateAgentRepository.findByEstateAgentNameAndEstateAgentSurname(estateAgentName, estateAgentSurname);
+    public List<EstateAgent> getEstateAgentByNameAndSurname(String estateAgentName, String estateAgentSurname) {
+        List<EstateAgent> estateAgentList = estateAgentRepository.findByEstateAgentNameAndEstateAgentSurname(estateAgentName, estateAgentSurname);
+        if (estateAgentList.isEmpty()) {
+            throw new DbException("EstateAgent not found");
+        }
+        return estateAgentList;
     }
 
     @Override
