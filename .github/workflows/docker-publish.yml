@@ -22,14 +22,10 @@ jobs:
         run: mvn clean install --file pom.xml -DskipTests
         working-directory: ${{github.workspace}}
 
-      - name: Set up Docker Compose
-        uses: withlogicco/setup-compose-cli@v1
+      - name: Build Docker image
+        run: docker build -t sametklou1907/tenantmanager:latest .
 
-      - name: Build and Push Docker Images
+      - name: Push to Docker Hub
         run: |
-          docker build -t tenantmanager .
           echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-          docker-compose push app
-
-      - name: Deploy to Docker Compose
-        run: docker-compose up -d
+          docker push sametklou1907/tenantmanager:latest
