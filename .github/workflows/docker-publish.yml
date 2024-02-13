@@ -23,7 +23,7 @@ jobs:
         working-directory: ${{github.workspace}}
 
       - name: Build Docker image
-        run: docker build -t sametklou1907/tenantmanager:latest .
+        run: docker compose build -t sametklou1907/tenantmanager:latest .
 
       - name: Push to Docker Hub
         run: |
