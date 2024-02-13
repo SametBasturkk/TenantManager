@@ -70,11 +70,11 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public Object getHouseByOwnerId(Long ownerId) {
-        Object houseList = houseRepository.findByOwnerId(ownerId);
-        if (houseList == null) {
+    public House getHouseByOwnerId(Long ownerId) {
+        House house = houseRepository.findByOwnerId(ownerId);
+        if (house == null) {
             throw new DbException("House not found");
         }
-        return houseList;
+        return house;
     }
 }

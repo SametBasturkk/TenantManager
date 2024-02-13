@@ -13,5 +13,5 @@ public interface HouseService {
 
     public void updateHouseOwner(Long houseId, Long ownerId);
 
-    public Object getHouseByOwnerId(Long ownerId);
+    public House getHouseByOwnerId(Long ownerId);
 }
