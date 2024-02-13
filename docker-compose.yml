@@ -9,7 +9,8 @@ services:
     depends_on:
       - postgresqldb
   postgresqldb:
-    image: postgres
+    image: postgres:latest
+    container_name: postgresqldb
     ports:
       - "5432:5432"
     environment:
