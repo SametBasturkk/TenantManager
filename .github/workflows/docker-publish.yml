@@ -23,9 +23,9 @@ jobs:
         working-directory: ${{github.workspace}}
 
       - name: Build Docker image
-        run: docker build -t sametklou1907/TenantManager:latest .
+        run: docker build -t sametklou1907/tenantmanager:latest .
 
       - name: Push to Docker Hub
         run: |
           echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-          docker push sametklou1907/TenantManager:latest
+          docker push sametklou1907/tenantmanager:latest
