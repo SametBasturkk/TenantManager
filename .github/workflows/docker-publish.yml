@@ -16,7 +16,7 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
-          cache-dependency-path: 'sub-project/pom.xml'
+          cache-dependency-path: './pom.xml'
       - name: Build with Maven
         run: mvn -B package --file pom.xml
         working-directory: ${{github.workspace}}
