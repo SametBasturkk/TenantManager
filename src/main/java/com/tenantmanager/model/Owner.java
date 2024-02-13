@@ -3,13 +3,11 @@ package com.tenantmanager.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
 @Entity
 @Table(name = "owners")
-@Validated
 public class Owner {
 
     @Id

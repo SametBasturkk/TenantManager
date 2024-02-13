@@ -29,8 +29,8 @@ public class TenantServiceImpl implements TenantService {
 
     @Override
     @Transactional
-    public Tenant createTenant(Tenant tenant) {
-
+    public Tenant createTenant(TenantDTO tenantDTO) {
+        Tenant tenant = modelMapper.map(tenantDTO, Tenant.class);
         return tenantRepository.save(tenant);
     }
 

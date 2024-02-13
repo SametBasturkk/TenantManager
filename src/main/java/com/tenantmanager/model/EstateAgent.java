@@ -8,7 +8,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "estate_agents")
-@Validated
 public class EstateAgent {
     @Id
     @GeneratedValue

@@ -22,8 +22,8 @@ public class HouseController {
 
 
     @PostMapping("/create-house")
-    public ResponseEntity createHouse(@RequestBody HouseDTO house) {
-        houseService.createHouse(house);
+    public ResponseEntity createHouse(@RequestBody HouseDTO houseDTO) {
+        houseService.createHouse(houseDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body("House created");
     }
 

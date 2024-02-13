@@ -1,7 +1,6 @@
 package com.tenantmanager.controller;
 
 import com.tenantmanager.dto.EstateAgentDTO;
-import com.tenantmanager.model.EstateAgent;
 import com.tenantmanager.service.impl.EstateAgentServiceImpl;
 import com.tenantmanager.util.DTOConverter;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
@@ -30,8 +29,8 @@ public class EstateAgentController {
     }
 
     @PostMapping("/create-estateagent")
-    public ResponseEntity createEstateAgent(@RequestBody @Valid EstateAgent estateAgent) {
-        EstateAgentDTO response = converter.estateAgentModelToDto(estateAgentService.createEstateAgent(estateAgent));
+    public ResponseEntity createEstateAgent(@RequestBody @Valid EstateAgentDTO estateAgentDTO) {
+        EstateAgentDTO response = converter.estateAgentModelToDto(estateAgentService.createEstateAgent(estateAgentDTO));
         logger.info("EstateAgent created");
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

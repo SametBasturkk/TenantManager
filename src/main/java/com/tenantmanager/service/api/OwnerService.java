@@ -11,7 +11,7 @@ public interface OwnerService {
 
     public Owner getOwnerByTCKN(String TCKN);
 
-    public Owner createOwner(Owner owner);
+    public Owner createOwner(OwnerDTO ownerDTO);
 
     public Owner getOwnerById(Long ownerId);
 

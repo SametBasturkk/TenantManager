@@ -11,7 +11,7 @@ public interface EstateAgentService {
 
     public EstateAgent getEstateAgentByTCKN(String TCKN);
 
-    public EstateAgent createEstateAgent(EstateAgent estateAgent);
+    public EstateAgent createEstateAgent(EstateAgentDTO estateAgentDTO);
 
     public EstateAgent getEstateAgentById(Long estateAgentId);
 

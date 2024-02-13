@@ -30,8 +30,8 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     @Transactional
-    public Owner createOwner(Owner owner) {
-
+    public Owner createOwner(OwnerDTO ownerDTO) {
+        Owner owner = modelMapper.map(ownerDTO, Owner.class);
         return ownerRepository.save(owner);
     }
 

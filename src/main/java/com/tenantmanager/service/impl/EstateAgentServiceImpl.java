@@ -34,8 +34,8 @@ public class EstateAgentServiceImpl implements EstateAgentService {
 
     @Override
     @Transactional
-    public EstateAgent createEstateAgent(EstateAgent estateAgent) {
-
+    public EstateAgent createEstateAgent(EstateAgentDTO estateAgentDTO) {
+        EstateAgent estateAgent = modelMapper.map(estateAgentDTO, EstateAgent.class);
         return estateAgentRepository.save(estateAgent);
     }
 

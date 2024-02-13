@@ -31,20 +31,20 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     @Transactional
-    public void createHouse(HouseDTO house) {
+    public void createHouse(HouseDTO houseDTO) {
         House houseModel = new House();
-        Owner owner = ownerService.getOwnerById(house.getOwnerId());
-        Apartment apartment = apartmentService.getApartmentById(house.getApartmentId());
+        Owner owner = ownerService.getOwnerById(houseDTO.getOwnerId());
+        Apartment apartment = apartmentService.getApartmentById(houseDTO.getApartmentId());
 
         if (owner == null || apartment == null) {
             throw new RuntimeException("Owner or Apartment not found");
         }
 
         houseModel.setOwner(owner);
-        houseModel.setHouseType(house.getHouseType());
-        houseModel.setHouseAddress(house.getHouseAddress());
-        houseModel.setHousePrice(house.getHousePrice());
-        houseModel.setHouseRooms(house.getHouseRooms());
+        houseModel.setHouseType(houseDTO.getHouseType());
+        houseModel.setHouseAddress(houseDTO.getHouseAddress());
+        houseModel.setHousePrice(houseDTO.getHousePrice());
+        houseModel.setHouseRooms(houseDTO.getHouseRooms());
         houseModel.setApartment(apartment);
         houseRepository.save(houseModel);
     }
