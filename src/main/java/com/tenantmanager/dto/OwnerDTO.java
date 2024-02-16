@@ -1,5 +1,6 @@
 package com.tenantmanager.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tenantmanager.model.House;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -25,8 +26,8 @@ public class OwnerDTO {
     @Pattern(regexp = EMAIL_REGEX, message = "Invalid email format")
     private String ownerMail;
 
-    private List<House> ownerHouse;
-
+    @JsonIgnore
+    private List<House> ownerHouses;
     @NotBlank(message = "Owner TCKN cannot be blank")
     @Size(min = 11, max = 11, message = "TCKN must be 11 characters")
     @Pattern(regexp = TCKN_REGEX, message = "TCKN must be numeric")
@@ -74,11 +75,11 @@ public class OwnerDTO {
     }
 
 
-    public List<House> getOwnerHouse() {
-        return ownerHouse;
+    public List<House> getOwnerHouses() {
+        return ownerHouses;
     }
 
-    public void setOwnerHouse(List<House> ownerHouse) {
-        this.ownerHouse = ownerHouse;
+    public void setOwnerHouses(List<House> ownerHouses) {
+        this.ownerHouses = ownerHouses;
     }
 }

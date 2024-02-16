@@ -1,5 +1,6 @@
 package com.tenantmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -13,6 +14,7 @@ public class House {
     private Long id;
     @Column(nullable = false)
     private String uuid;
+    @JsonManagedReference
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private Owner owner;
