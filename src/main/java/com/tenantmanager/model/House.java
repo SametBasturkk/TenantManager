@@ -1,6 +1,5 @@
 package com.tenantmanager.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -14,7 +13,6 @@ public class House {
     private Long id;
     @Column(nullable = false)
     private String uuid;
-    @JsonManagedReference
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private Owner owner;
@@ -26,7 +24,7 @@ public class House {
     private Integer housePrice;
     @Column(nullable = false)
     private Integer houseRooms;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "apartment_id")
     private Apartment apartment;
 

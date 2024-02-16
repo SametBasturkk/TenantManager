@@ -1,7 +1,6 @@
 package com.tenantmanager.model;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 
@@ -24,7 +23,6 @@ public class Owner {
     @Column(nullable = false)
     @Email
     private String ownerMail;
-    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "owner")
     private List<House> ownerHouses;
     @Column(nullable = false, unique = true, name = "owner_tckn")
